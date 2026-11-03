@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Department of Air Warfare — Hall of Fame</title>
+<link rel="icon" href="assets/icons/app.ico" />
+<link rel="stylesheet" href="assets/fonts/fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="stage-wrapper" id="stage-wrapper">
+    <div class="stage" id="stage">
+
+      <!-- ============ AMBIENT BACKGROUND: night sky, HUD grid, contrails ============ -->
+      <div class="app-bg" aria-hidden="true">
+        <div class="app-bg-glow"></div>
+        <div class="app-bg-hud"></div>
+        <div class="contrails">
+          <span class="contrail contrail--a"></span>
+          <span class="contrail contrail--b"></span>
+          <span class="contrail contrail--c"></span>
+        </div>
+      </div>
+
+      <!-- ============ PERSISTENT TOP BAR ============ -->
+      <header class="topbar hidden" id="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn" id="btn-home" aria-label="Home">
+            <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9" /><path d="M9.5 20v-6h5v6" /></svg>
+          </button>
+          <nav class="topbar-nav" id="topbar-nav">
+            <button class="topbar-link" data-nav="commandants" data-i18n="menuCommandants"></button>
+            <button class="topbar-link" data-nav="directors" data-i18n="menuDirectors"></button>
+          </nav>
+        </div>
+        <div class="topbar-brand">
+          <img class="topbar-crest" src="assets/icons/emblem.png" alt="" />
+          <div class="topbar-text">
+            <span class="topbar-kicker" data-i18n="college"></span>
+            <span class="topbar-title" data-i18n="department"></span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="icon-btn sound-btn hidden" id="btn-sound" aria-label="Mute background music" aria-pressed="false">
+            <svg class="icon-sound-on" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+            <svg class="icon-sound-off" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg>
+          </button>
+          <button class="kiosk-close" id="btn-close" title="Close" aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="screens">
+
+        <!-- ============ WELCOME ============ -->
+        <section class="screen active" id="screen-attract">
+          <div class="wall" id="attract-wall" aria-hidden="true"></div>
+          <div class="attract-veil" aria-hidden="true"></div>
+          <div class="attract-content">
+            <div class="radar" aria-hidden="true">
+              <span class="radar-ring radar-ring--1"></span>
+              <span class="radar-ring radar-ring--2"></span>
+              <span class="radar-ring radar-ring--3"></span>
+              <span class="radar-sweep"></span>
+              <span class="radar-ticks"></span>
+              <img class="radar-emblem" src="assets/icons/emblem.png" alt="" />
+            </div>
+            <p class="attract-kicker" data-i18n="college"></p>
+            <h1 class="attract-title" data-i18n="department"></h1>
+            <div class="attract-rule"><span></span><em data-i18n="hallOfFame"></em><span></span></div>
+            <p class="attract-tagline" data-i18n="tagline"></p>
+            <button class="attract-cta" id="attract-cta">
+              <span class="attract-cta-pulse"></span>
+              <span data-i18n="touchToBegin"></span>
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+          <div class="attract-stats" id="attract-stats"></div>
+        </section>
+
+        <!-- ============ HOME ============ -->
+        <section class="screen" id="screen-home">
+          <div class="home-header">
+            <p class="eyebrow" data-i18n="college"></p>
+            <h1 class="home-title" data-i18n="department"></h1>
+            <div class="attract-rule home-rule"><span></span><em data-i18n="hallOfFame"></em><span></span></div>
+          </div>
+          <nav class="home-grid">
+            <button class="hall-tile hall-tile--commandants" data-nav="commandants">
+              <span class="hall-tile-art" id="home-commandants-art"></span>
+              <span class="hall-tile-shade"></span>
+              <span class="hall-tile-num">I</span>
+              <span class="hall-tile-body">
+                <span class="hall-tile-meta" id="home-commandants-meta"></span>
+                <span class="hall-tile-title" data-i18n="menuCommandants"></span>
+                <span class="hall-tile-sub" data-i18n="menuCommandantsSub"></span>
+              </span>
+              <span class="hall-tile-go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </button>
+            <button class="hall-tile hall-tile--directors" data-nav="directors">
+              <span class="hall-tile-art" id="home-directors-art"></span>
+              <span class="hall-tile-shade"></span>
+              <span class="hall-tile-num">II</span>
+              <span class="hall-tile-body">
+                <span class="hall-tile-meta" id="home-directors-meta"></span>
+                <span class="hall-tile-title" data-i18n="menuDirectors"></span>
+                <span class="hall-tile-sub" data-i18n="menuDirectorsSub"></span>
+              </span>
+              <span class="hall-tile-go"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </button>
+          </nav>
+        </section>
+
+        <!-- ============ COMMANDANTS ============ -->
+        <section class="screen" id="screen-commandants">
+          <div class="list-header">
+            <div>
+              <p class="eyebrow" id="cmd-years"></p>
+              <h2 class="section-title" data-i18n="commandantsTitle"></h2>
+            </div>
+            <div class="list-tools">
+              <div class="chips" id="cmd-chips"></div>
+              <span class="list-hint" data-i18n="tapPortrait"></span>
+            </div>
+          </div>
+          <div class="track-wrap">
+            <div class="track" id="cmd-track"></div>
+          </div>
+        </section>
+
+        <!-- ============ DIRECTORS ============ -->
+        <section class="screen" id="screen-directors">
+          <div class="list-header">
+            <div>
+              <p class="eyebrow" id="dir-years"></p>
+              <h2 class="section-title" data-i18n="directorsTitle"></h2>
+            </div>
+            <div class="list-tools">
+              <div class="chips" id="dir-chips"></div>
+              <span class="list-hint" data-i18n="tapPortrait"></span>
+            </div>
+          </div>
+          <div class="track-wrap">
+            <div class="track" id="dir-track"></div>
+          </div>
+          <div class="ribbon">
+            <div class="ribbon-label" data-i18n="succession"></div>
+            <div class="ribbon-body">
+              <div class="ribbon-bar" id="ribbon-bar"></div>
+              <div class="ribbon-years" id="ribbon-years"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ COMMANDANT BIOGRAPHY ============ -->
+        <section class="screen" id="screen-bio">
+          <div class="bio-wrap" id="bio-wrap">
+            <aside class="bio-aside">
+              <button class="back-link" id="bio-back">
+                <svg viewBox="0 0 24 24"><path d="M15 6 9 12l6 6"/></svg>
+                <span data-i18n="commandantsTitle"></span>
+              </button>
+              <div class="bio-frame" id="bio-frame"></div>
+              <div class="bio-ordinal" id="bio-ordinal"></div>
+            </aside>
+            <div class="bio-main">
+              <div class="bio-head">
+                <span class="tag" id="bio-service"></span>
+                <p class="bio-rank" id="bio-rank"></p>
+                <h2 class="bio-name" id="bio-name"></h2>
+                <p class="bio-post" id="bio-post"></p>
+                <p class="bio-fullname" id="bio-fullname"></p>
+              </div>
+              <dl class="bio-facts" id="bio-facts"></dl>
+              <div class="bio-panel" id="bio-panel"></div>
+              <div class="bio-foot">
+                <div class="bio-links" id="bio-links"></div>
+                <div class="bio-nav">
+                  <button class="round-btn" id="bio-prev" aria-label="Previous commandant"><svg viewBox="0 0 24 24"><path d="M15 6 9 12l6 6"/></svg></button>
+                  <button class="round-btn" id="bio-next" aria-label="Next commandant"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ============ DIRECTOR PROFILE OVERLAY ============ -->
+      <div class="profile hidden" id="profile" aria-hidden="true">
+        <div class="profile-backdrop" id="profile-backdrop"></div>
+        <div class="profile-panel" id="profile-panel">
+          <button class="icon-btn profile-close" id="profile-close" aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+          <button class="round-btn profile-nav profile-nav--prev" id="profile-prev" aria-label="Previous director">
+            <svg viewBox="0 0 24 24"><path d="M15 6 9 12l6 6"/></svg>
+          </button>
+          <button class="round-btn profile-nav profile-nav--next" id="profile-next" aria-label="Next director">
+            <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+          <div class="profile-body" id="profile-body">
+            <div class="profile-portrait">
+              <span class="profile-ordinal" id="profile-ordinal"></span>
+              <div class="profile-frame"><img id="profile-photo" src="" alt="" /></div>
+            </div>
+            <div class="profile-info">
+              <p class="eyebrow" id="profile-kicker"></p>
+              <span class="tag" id="profile-tag"></span>
+              <p class="profile-rank" id="profile-rank"></p>
+              <h2 class="profile-name" id="profile-name"></h2>
+              <p class="profile-post" id="profile-post"></p>
+              <div class="profile-facts">
+                <div class="fact"><span class="fact-label" data-i18n="appointment"></span><span class="fact-value" id="profile-appt"></span></div>
+                <div class="fact"><span class="fact-label" data-i18n="duration"></span><span class="fact-value" id="profile-duration"></span></div>
+                <div class="fact fact--wide"><span class="fact-label" data-i18n="tenure"></span><span class="fact-value" id="profile-tenure"></span></div>
+              </div>
+              <div class="profile-succession" id="profile-succession"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="idle-overlay hidden" id="idle-overlay"><span data-i18n="idleReturnNote"></span></div>
+
+    </div>
+  </div>
+
+  <script src="data/content.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
