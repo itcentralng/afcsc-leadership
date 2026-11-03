@@ -12,7 +12,7 @@ rem ============================================================
 
 set "SCRIPT_DIR=%~dp0"
 set "TARGET_BAT=%SCRIPT_DIR%run.bat"
-set "SHORTCUT_NAME=Air Warfare Hall of Fame.lnk"
+set "SHORTCUT_NAME=Our Leaders.lnk"
 set "SHORTCUT_PATH=%USERPROFILE%\Desktop\%SHORTCUT_NAME%"
 set "VBS_PATH=%TEMP%\daw_make_shortcut.vbs"
 
@@ -27,7 +27,7 @@ if not exist "%TARGET_BAT%" (
   exit /b 1
 )
 
-echo Creating a Desktop shortcut for the Department of Air Warfare Hall of Fame...
+echo Creating a Desktop shortcut for Our Leaders...
 
 > "%VBS_PATH%" echo Set oWS = WScript.CreateObject("WScript.Shell")
 >> "%VBS_PATH%" echo Set oLink = oWS.CreateShortcut("%SHORTCUT_PATH%")
@@ -36,7 +36,7 @@ echo Creating a Desktop shortcut for the Department of Air Warfare Hall of Fame.
 >> "%VBS_PATH%" echo oLink.WorkingDirectory = "%SCRIPT_DIR%"
 >> "%VBS_PATH%" echo oLink.WindowStyle = 7
 >> "%VBS_PATH%" echo oLink.IconLocation = "%APP_ICON%"
->> "%VBS_PATH%" echo oLink.Description = "Launch the Department of Air Warfare Hall of Fame kiosk"
+>> "%VBS_PATH%" echo oLink.Description = "Launch Our Leaders, the Department of Air Warfare Hall of Fame kiosk"
 >> "%VBS_PATH%" echo oLink.Save
 
 cscript //nologo "%VBS_PATH%"

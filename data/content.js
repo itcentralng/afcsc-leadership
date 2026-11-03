@@ -11,6 +11,8 @@
 var HOF_CONTENT = {
 
   ui: {
+    appTitle: 'Our Leaders',
+    appKicker: 'Department of Air Warfare · AFCSC Jaji',
     college: 'Armed Forces Command and Staff College',
     collegeShort: 'AFCSC Jaji',
     department: 'Department of Air Warfare',
