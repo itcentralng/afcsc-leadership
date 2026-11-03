@@ -167,7 +167,8 @@ svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width:
 }
 .topbar-link.active { color: var(--ivory); border-color: var(--sky-line); background: var(--sky-faint); }
 .topbar-brand { position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; }
-.topbar-crest { width: 58px; height: 58px; object-fit: contain; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)); }
+.topbar-crest { width: 50px; height: 66px; object-fit: contain; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)); }
+.topbar-crest--naf { width: 66px; }
 .topbar-text { display: flex; flex-direction: column; gap: 2px; }
 .topbar-kicker { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
 .topbar-title { font-family: var(--font-display); font-weight: 600; font-size: 26px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory); }
@@ -240,12 +241,24 @@ svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width:
   background: conic-gradient(from 0deg, rgba(74, 168, 255, 0.35), rgba(74, 168, 255, 0) 70deg, transparent 360deg);
   animation: spin 6s linear infinite;
 }
-.radar-emblem {
-  position: relative; width: 240px; height: 240px; object-fit: contain;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.7));
-  animation: emblemFloat 7s ease-in-out infinite;
+/* The two crests back to back: AFCSC rests facing the visitor, turns to
+   show the Air Force crest, rests, and turns back. Nothing above
+   .crest-flip-spin may use filter or opacity < 1, or the 3D flattens. */
+.crest-flip { position: relative; width: 250px; height: 270px; perspective: 1200px; }
+.crest-flip-spin {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  animation: crestFlip 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
-@keyframes emblemFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes crestFlip {
+  0%, 38%   { transform: rotateY(0deg); }
+  50%, 88%  { transform: rotateY(180deg); }
+  100%      { transform: rotateY(360deg); }
+}
+.crest-face {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.crest-face--back { transform: rotateY(180deg); }
 
 .attract-kicker { font-family: var(--font-display); font-weight: 500; font-size: 24px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); }
 .attract-title {
@@ -283,7 +296,10 @@ svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width:
 
 /* ============ HOME ============ */
 #screen-home { align-items: center; justify-content: center; padding: 92px 90px 64px; gap: 54px; }
-.home-header { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.home-header { display: flex; align-items: center; justify-content: center; gap: 64px; }
+.home-header-text { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.home-crest { width: 150px; height: 200px; object-fit: contain; filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.55)); animation: cardIn .9s var(--ease) both; }
+.home-crest--naf { width: 200px; }
 .home-title { font-family: var(--font-display); font-weight: 700; font-size: 80px; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ivory); }
 .home-rule em { font-size: 38px; }
 .home-grid { width: 100%; max-width: 1680px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -357,7 +373,10 @@ svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width:
 .home-sketch:nth-child(5) { transform: rotate(12deg) translateY(44px); }
 
 /* ============ LIST SCREENS (shared) ============ */
-.list-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding: 34px 80px 0; flex-shrink: 0; }
+.list-header { display: flex; align-items: flex-end; gap: 30px; padding: 34px 80px 0; flex-shrink: 0; }
+.list-title { margin-right: auto; }
+.list-crest { width: 92px; height: 124px; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5)); }
+.list-crest--naf { width: 124px; }
 .list-header .eyebrow { margin-bottom: 10px; }
 .list-tools { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
 .list-hint { font-family: var(--font-body); font-style: italic; font-size: 22px; color: var(--muted); }
@@ -422,12 +441,18 @@ svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width:
 
 /* monogram shown until a commandant's portrait is matched */
 .monogram {
+  position: relative; isolation: isolate;
   width: 100%; height: 100%; display: grid; place-items: center;
   font-family: var(--font-serif); font-weight: 700; font-size: 64px; letter-spacing: 0.04em;
   color: var(--gold); background:
     radial-gradient(circle at 50% 30%, rgba(74, 168, 255, 0.18), transparent 60%),
     repeating-linear-gradient(135deg, rgba(143, 203, 255, 0.04) 0 2px, transparent 2px 12px);
   text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+.monogram::before {
+  content: ''; position: absolute; inset: 14%; z-index: -1;
+  background: url('assets/icons/afcsc.png') center / contain no-repeat;
+  opacity: 0.16; filter: grayscale(0.4);
 }
 .monogram--army { color: #b9e2c3; }
 .bio-frame .monogram { font-size: 170px; }

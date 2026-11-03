@@ -18,6 +18,8 @@ var HOF_CONTENT = {
     tagline: 'Honouring those who led the College and the Department',
     touchToBegin: 'Touch to begin',
 
+    navCommandants: 'Commandants',
+    navDirectors: 'Directors',
     menuCommandants: 'Commandants of the College',
     menuCommandantsSub: 'The officers who have led the Armed Forces Command and Staff College',
     menuDirectors: 'Directors of Air Warfare',
@@ -114,7 +116,8 @@ var HOF_CONTENT = {
      ("...improved learning in the Army Faculty / Department of Land
      Warfare") now reads "...at the College" for this Air Warfare hall.
 
-     photo: null shows the College emblem until the portrait is matched.
+     photo: null shows the officer's initials on the College crest until the
+     portrait is matched.
      The unnamed photos are in assets/commandants/unidentified/
      (photo-01.png … photo-13.png); see Leaders/Commandants/photo-key.jpg.
      ---------------------------------------------------------- */

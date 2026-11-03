@@ -31,16 +31,17 @@
             <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9" /><path d="M9.5 20v-6h5v6" /></svg>
           </button>
           <nav class="topbar-nav" id="topbar-nav">
-            <button class="topbar-link" data-nav="commandants" data-i18n="menuCommandants"></button>
-            <button class="topbar-link" data-nav="directors" data-i18n="menuDirectors"></button>
+            <button class="topbar-link" data-nav="commandants" data-i18n="navCommandants"></button>
+            <button class="topbar-link" data-nav="directors" data-i18n="navDirectors"></button>
           </nav>
         </div>
         <div class="topbar-brand">
-          <img class="topbar-crest" src="assets/icons/emblem.png" alt="" />
+          <img class="topbar-crest" src="assets/icons/afcsc.png" alt="Armed Forces Command and Staff College" />
           <div class="topbar-text">
             <span class="topbar-kicker" data-i18n="college"></span>
             <span class="topbar-title" data-i18n="department"></span>
           </div>
+          <img class="topbar-crest topbar-crest--naf" src="assets/icons/naf.png" alt="Nigerian Air Force" />
         </div>
         <div class="topbar-right">
           <button class="icon-btn sound-btn hidden" id="btn-sound" aria-label="Mute background music" aria-pressed="false">
@@ -66,7 +67,13 @@
               <span class="radar-ring radar-ring--3"></span>
               <span class="radar-sweep"></span>
               <span class="radar-ticks"></span>
-              <img class="radar-emblem" src="assets/icons/emblem.png" alt="" />
+              <!-- the two crests back to back, turning: AFCSC, then the Air Force -->
+              <div class="crest-flip">
+                <div class="crest-flip-spin">
+                  <img class="crest-face crest-face--front" src="assets/icons/afcsc.png" alt="Armed Forces Command and Staff College" />
+                  <img class="crest-face crest-face--back" src="assets/icons/naf.png" alt="Nigerian Air Force" />
+                </div>
+              </div>
             </div>
             <p class="attract-kicker" data-i18n="college"></p>
             <h1 class="attract-title" data-i18n="department"></h1>
@@ -84,9 +91,13 @@
         <!-- ============ HOME ============ -->
         <section class="screen" id="screen-home">
           <div class="home-header">
-            <p class="eyebrow" data-i18n="college"></p>
-            <h1 class="home-title" data-i18n="department"></h1>
-            <div class="attract-rule home-rule"><span></span><em data-i18n="hallOfFame"></em><span></span></div>
+            <img class="home-crest" src="assets/icons/afcsc.png" alt="Armed Forces Command and Staff College" />
+            <div class="home-header-text">
+              <p class="eyebrow" data-i18n="college"></p>
+              <h1 class="home-title" data-i18n="department"></h1>
+              <div class="attract-rule home-rule"><span></span><em data-i18n="hallOfFame"></em><span></span></div>
+            </div>
+            <img class="home-crest home-crest--naf" src="assets/icons/naf.png" alt="Nigerian Air Force" />
           </div>
           <nav class="home-grid">
             <button class="hall-tile hall-tile--commandants" data-nav="commandants">
@@ -117,7 +128,8 @@
         <!-- ============ COMMANDANTS ============ -->
         <section class="screen" id="screen-commandants">
           <div class="list-header">
-            <div>
+            <img class="list-crest" src="assets/icons/afcsc.png" alt="" />
+            <div class="list-title">
               <p class="eyebrow" id="cmd-years"></p>
               <h2 class="section-title" data-i18n="commandantsTitle"></h2>
             </div>
@@ -134,7 +146,8 @@
         <!-- ============ DIRECTORS ============ -->
         <section class="screen" id="screen-directors">
           <div class="list-header">
-            <div>
+            <img class="list-crest list-crest--naf" src="assets/icons/naf.png" alt="" />
+            <div class="list-title">
               <p class="eyebrow" id="dir-years"></p>
               <h2 class="section-title" data-i18n="directorsTitle"></h2>
             </div>

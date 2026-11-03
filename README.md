@@ -9,8 +9,9 @@ and scaled to fit any screen.
 
 ## Screens
 
-- **Welcome**: the emblem over a radar sweep, on a drifting wall of the
-  directors' portraits. Any touch begins.
+- **Welcome**: the AFCSC and Nigerian Air Force crests, back to back and
+  turning, over a radar sweep and a drifting wall of the directors'
+  portraits. Any touch begins.
 - **Home**: two halls: Commandants of the College, and Directors of Air Warfare.
 - **Commandants of the College**: a two-row gallery of medallions in order of
   appointment, filterable by service (Army / Air Force). Tap one for the
@@ -66,11 +67,16 @@ photo: 'assets/commandants/unidentified/photo-06.png'
 - `assets/commandants/`: the two framed official portraits, cropped inside
   their frames, and the cut-out photos in `unidentified/`.
 
-## Emblem
+## Crests
 
-`assets/icons/emblem.svg` (and `emblem.png`, `app.ico`) is a placeholder mark
-drawn for the kiosk. Replace `emblem.png` and `app.ico` with the official
-crest when it is available.
+`assets/icons/afcsc.png` (Armed Forces Command and Staff College) and
+`assets/icons/naf.png` (Nigerian Air Force) are prepared from the files in
+`Leaders/Logos/`: trimmed, enlarged for the big screen, and with their edges
+smoothed. They appear on the welcome screen, the top bar, the home screen and
+as section badges (AFCSC on Commandants, Air Force on Directors), and the
+AFCSC crest sits behind the initials of commandants still awaiting a
+portrait. `app.ico` is built from the AFCSC crest. A larger original of the
+AFCSC crest would make it sharper still; replace both PNGs the same way.
 
 ## Background music
 
@@ -88,7 +94,7 @@ data/content.js       rolls of commandants and directors
 assets/directors/     director portraits used by the app
 assets/commandants/   commandant portraits and unnamed cut-outs
 assets/fonts/         bundled Oswald, Playfair Display, Crimson Text
-assets/icons/         emblem and app icon
-Leaders/              original PDF, Word documents and photos
+assets/icons/         AFCSC and Air Force crests, app icon
+Leaders/              original PDF, Word documents, photos and crests
 run.bat, prepare.bat  kiosk launchers
 ```

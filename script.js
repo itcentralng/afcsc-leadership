@@ -94,7 +94,7 @@
   // Commandant visual: framed portrait, cut-out (PNG), or, until a
   // portrait is matched, a monogram of first initial and surname initial.
   function commandantImg(c) {
-    if (c.pending) return img('assets/icons/emblem.png', '', 'is-emblem');
+    if (c.pending) return img('assets/icons/afcsc.png', '', 'is-emblem');
     if (!c.photo) {
       var parts = c.name.split(' ');
       var mono = parts[0].charAt(0) + parts[parts.length - 1].charAt(0);
