@@ -9,20 +9,26 @@ and scaled to fit any screen.
 
 ## Screens
 
-- **Welcome**: the AFCSC and Nigerian Air Force crests, back to back and
-  turning, over a radar sweep and a drifting wall of the directors'
-  portraits. Any touch begins.
+- **Welcome**: a cockpit layout. On the left, the title with instrument
+  readouts (commandants, directors, since) and a "Touch to begin" target box;
+  on the right, a radar scope with the AFCSC and Air Force crests turning at
+  its centre and the leaders' portraits as blips that light up as the sweep
+  passes. A compass heading tape drifts across the top. Any touch begins.
 - **Home**: two halls: Commandants of the College, and Directors of Air Warfare.
 - **Commandants of the College**: a two-row gallery of medallions in order of
   appointment, filterable by service (Army / Air Force). Tap one for the
   full biography page: tenure, service number, birth, commissioning and the
   biography text, with previous/next.
-- **Directors of Air Warfare**: every director on a drifting timeline,
-  divided into the Air Faculty and Air Warfare eras, with a line-of-succession
-  bar sized to each tenure. Tap a portrait for the profile: post-nominals,
-  appointment, tenure, duration, predecessor and successor.
+- **Directors of Air Warfare**: a spotlight and an honour wall. The spotlight
+  features one director (portrait, rank, post-nominals, tenure, duration,
+  predecessor and successor) and moves on to the next every 8 seconds, with a
+  progress bar under the portrait. The honour wall beside it shows all 35
+  portraits grouped as Director Air Faculty and Director Air Warfare; tap one
+  to bring it into the spotlight. A touch holds the spotlight for 15 seconds
+  before it carries on. Timings are at the top of the directors section of
+  `script.js`.
 - Officers who held both offices (AVM SA Leks, AVM AS Liman) link between
-  their director profile and their commandant biography.
+  their director spotlight and their commandant biography.
 
 After 100 seconds without a touch the kiosk returns to the welcome screen.
 
@@ -89,7 +95,7 @@ begins. The speaker button in the top bar mutes it. Delete the file for silence.
 ```
 index.html            markup for every screen
 styles.css            theme and layout
-script.js             navigation, gallery, chronicle, profiles, idle reset
+script.js             navigation, radar, gallery, spotlight, idle reset
 data/content.js       rolls of commandants and directors
 assets/directors/     director portraits used by the app
 assets/commandants/   commandant portraits and unnamed cut-outs

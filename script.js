@@ -24,7 +24,7 @@
   var COMMANDANTS = C.commandants;
   var CUR_DIR = indexWhere(DIRECTORS, function (d) { return d.current; });
 
-  var state = { screen: 'attract', profileIndex: null, bioIndex: null, cmdFilter: 'all' };
+  var state = { screen: 'attract', spot: 0, bioIndex: null, cmdFilter: 'all' };
   var el = {};
   var idleTimer = null;
 
@@ -67,10 +67,6 @@
   function tenureLong(p) {
     if (!p.from) return t('tbc');
     return fmtLong(parseDate(p.from)) + ' — ' + (p.to ? fmtLong(parseDate(p.to)) : (p.current ? t('present') : t('tbc')));
-  }
-  function tenureShort(p) {
-    if (!p.from) return t('tbc');
-    return fmtShort(parseDate(p.from)) + ' — ' + (p.to ? fmtShort(parseDate(p.to)) : (p.current ? t('present') : '…'));
   }
   function tenureYears(p) {
     if (!p.from) return t('tbc');
@@ -169,7 +165,7 @@
 
   /* ---------------- navigation ---------------- */
   function showScreen(id) {
-    closeProfile();
+    stopSpot();
     tracks.forEach(function (tr) { tr.stop(); });
     state.screen = id;
     if (ambient && !ambient.paused) fadeAmbient(ambientTarget());
@@ -178,34 +174,59 @@
     var section = id === 'bio' ? 'commandants' : id;
     el.topbarNav.querySelectorAll('[data-nav]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-nav') === section); });
     if (id === 'commandants') cmdTrack.enter();
-    if (id === 'directors') dirTrack.enter();
+    if (id === 'directors') enterDirectors();
     resetIdleTimer();
   }
 
   /* ---------------- welcome ---------------- */
-  function buildAttract() {
-    ['a', 'b', 'c'].forEach(function (r, ri) {
-      var row = make('div', 'wall-row wall-row--' + r);
-      var order = DIRECTORS.map(function (_, i) { return DIRECTORS[(i + ri * 11) % DIRECTORS.length]; });
-      order.concat(order).forEach(function (d) {
-        var tile = make('div', 'wall-tile');
-        tile.appendChild(img(d.photo));
-        row.appendChild(tile);
-      });
-      el.attractWall.appendChild(row);
-    });
+  var SWEEP_S = 10; // one turn of the radar sweep (matches .scope-sweep in CSS)
 
+  function buildAttract() {
+    // Heading tape: a tick every 5°, labelled every 30°, repeated for a seamless loop.
+    var LABELS = { 0: 'N', 90: 'E', 180: 'S', 270: 'W' };
+    for (var rep = 0; rep < 2; rep++) {
+      for (var deg = 0; deg < 360; deg += 5) {
+        var major = deg % 30 === 0;
+        var tick = make('span', 'hud-tick' + (major ? ' hud-tick--major' : ''));
+        if (major) tick.appendChild(make('span', null, LABELS[deg] || (deg < 100 ? '0' : '') + (deg < 10 ? '0' : '') + deg));
+        el.hudTape.appendChild(tick);
+      }
+    }
+
+    // Radar blips: directors on the outer ring, commandants with portraits on
+    // the inner ring. Each lights up as the sweep passes its bearing.
+    var R = 410; // scope radius (half of .scope)
+    function addBlip(src, radius, bearing, small) {
+      var b = make('span', 'blip' + (small ? ' blip--sm' : ''));
+      var rad = bearing * Math.PI / 180;
+      b.style.left = (R + radius * Math.sin(rad)) + 'px';
+      b.style.top = (R - radius * Math.cos(rad)) + 'px';
+      b.style.animationDelay = (-(SWEEP_S - bearing / 360 * SWEEP_S)) + 's';
+      b.appendChild(img(src));
+      el.scopeBlips.appendChild(b);
+    }
+    var OUTER = 14;
+    for (var k = 0; k < OUTER; k++) {
+      var d = DIRECTORS[Math.round(k * (DIRECTORS.length - 1) / (OUTER - 1))];
+      addBlip(d.photo, 340, k * 360 / OUTER + 8, false);
+    }
+    var inner = COMMANDANTS.filter(function (c) { return c.photo && !/\.png$/i.test(c.photo); }).map(function (c) { return c.photo; });
+    var extra = (C.homeCommandantPhotos || []).filter(function (p) { return inner.indexOf(p) < 0; });
+    inner = inner.concat(extra).slice(0, 8);
+    inner.forEach(function (src, n) { addBlip(src, 215, n * 360 / inner.length + 30, true); });
+
+    // Instrument readouts
     var named = COMMANDANTS.filter(function (c) { return !c.pending; });
     var first = Math.min(+year(named[0].from), +year(DIRECTORS[0].from));
     [
-      [named.length, t('menuCommandants')],
-      [DIRECTORS.length, t('menuDirectors')],
-      ['Since ' + first, t('college')]
+      [named.length, 'Commandants'],
+      [DIRECTORS.length, 'Directors'],
+      [first, 'Since']
     ].forEach(function (s) {
-      var n = make('div', 'attract-stat');
-      n.appendChild(make('b', null, String(s[0])));
-      n.appendChild(make('span', null, s[1]));
-      el.attractStats.appendChild(n);
+      var g = make('div', 'gauge');
+      g.appendChild(make('b', null, String(s[0])));
+      g.appendChild(make('span', null, s[1]));
+      el.attractStats.appendChild(g);
     });
   }
 
@@ -275,7 +296,7 @@
     });
     window.addEventListener('pointerup', function () {
       dragging = false;
-      if (state.screen === screenId && state.profileIndex === null) self.schedule(AUTO_SCROLL_RESUME_DELAY);
+      if (state.screen === screenId) self.schedule(AUTO_SCROLL_RESUME_DELAY);
     });
     node.addEventListener('touchmove', function () { dragMoved = true; }, { passive: true });
     node.addEventListener('wheel', function (e) {
@@ -405,7 +426,7 @@
       if (di >= 0) {
         var b = make('button', 'chip-btn chip-btn--gold');
         b.appendChild(chipContent(DIRECTORS[di].photo, t('alsoDirector') + ' · ' + tenureYears(DIRECTORS[di]), shortName(DIRECTORS[di])));
-        b.addEventListener('click', function () { showScreen('directors'); openProfile(di); });
+        b.addEventListener('click', function () { showDirector(di); });
         el.bioLinks.appendChild(b);
       }
     }
@@ -424,114 +445,129 @@
     if (k >= 0 && k < order.length) openBio(order[k], dir);
   }
 
-  /* ---------------- directors ---------------- */
-  var dirTrack;
+  /* ---------------- directors: spotlight + honour wall ---------------- */
+  // The spotlight features one director at a time and moves on by itself;
+  // a touch anywhere on the screen holds it for a while before it resumes.
+  var SPOT_INTERVAL = 8000;   // ms each director stays in the spotlight
+  var SPOT_RESUME = 15000;    // ms of quiet before it starts moving again
+  var spotTimer = null;
+
   function appointmentTitle(d) {
     var era = C.eras.filter(function (e) { return e.id === d.era; })[0];
     return era ? era.title : t('director');
   }
+  function surname(p) { var parts = p.name.split(' '); return parts[parts.length - 1]; }
 
   function buildDirectors() {
     el.dirYears.textContent = year(DIRECTORS[0].from) + ' — ' + t('present');
-
-    var rail = make('div', 'rail');
-    var eraFirst = {};
-    el.dirCards = [];
-    DIRECTORS.forEach(function (d, i) {
-      if (!(d.era in eraFirst)) {
-        eraFirst[d.era] = i;
-        var era = C.eras.filter(function (e) { return e.id === d.era; })[0];
-        var last = DIRECTORS.length - 1 - indexWhere(DIRECTORS.slice().reverse(), function (x) { return x.era === d.era; });
-        var mark = make('div', 'era-mark');
-        var pill = make('div', 'era-mark-pill', era.label);
-        pill.appendChild(make('small', null, year(d.from) + ' — ' + (last === DIRECTORS.length - 1 ? t('present') : year(DIRECTORS[last].to))));
-        mark.appendChild(pill);
-        mark.appendChild(make('span', 'era-mark-label', era.title));
-        mark.setAttribute('data-era', d.era);
-        rail.appendChild(mark);
-      }
-      var card = make('button', 'dcard' + (i === CUR_DIR ? ' dcard--current' : '') + (i === DIRECTORS.length - 1 ? ' is-last' : ''));
-      card.style.animationDelay = (i * 0.04) + 's';
-      card.setAttribute('aria-label', fullName(d));
-      var node = make('span', 'dcard-node');
-      node.appendChild(make('span', 'dcard-dot'));
-      node.appendChild(make('span', 'dcard-num', pad2(i + 1)));
-      card.appendChild(node);
-      var frame = make('span', 'dcard-frame');
-      frame.appendChild(img(d.photo, fullName(d)));
-      card.appendChild(frame);
-      var body = make('span', 'dcard-body');
-      body.appendChild(make('span', 'dcard-rank', d.rankShort));
-      body.appendChild(make('span', 'dcard-name', d.name));
-      body.appendChild(make('span', 'dcard-dates', tenureShort(d)));
-      card.appendChild(body);
-      card.addEventListener('click', function () { if (!dragMoved) openProfile(i); });
-      rail.appendChild(card);
-      el.dirCards.push(card);
-    });
-    el.dirTrack.appendChild(rail);
-    el.dirRail = rail;
-
-    buildRibbon();
-    dirTrack = new Track(el.dirTrack, 'directors', syncFocus);
-
-    var chips = [{ id: 'all', label: t('all'), note: String(DIRECTORS.length) }];
-    C.eras.forEach(function (e) {
-      var n = DIRECTORS.filter(function (d) { return d.era === e.id; }).length;
-      if (n) chips.push({ id: e.id, label: e.label, note: String(n) });
-    });
-    buildChips(el.dirChips, chips, function (id) {
-      dirTrack.stop();
-      if (id === 'all') el.dirTrack.scrollTo({ left: 0, behavior: 'smooth' });
-      else dirTrack.scrollTo(rail.querySelector('[data-era="' + id + '"]'), 'start');
-      dirTrack.schedule(AUTO_SCROLL_RESUME_DELAY);
-    });
-  }
-
-  function buildRibbon() {
-    var start = parseDate(DIRECTORS[0].from);
-    var last = DIRECTORS[DIRECTORS.length - 1];
-    var end = endOf(last) || parseDate(last.from);
-    var span = end - start;
-    DIRECTORS.forEach(function (d, i) {
-      var e = endOf(d) || parseDate(d.from);
-      var days = Math.max(1, (e - parseDate(d.from)) / 864e5);
-      var seg = make('button', 'ribbon-seg ribbon-seg--' + d.era);
-      seg.style.flexGrow = days;
-      seg.setAttribute('aria-label', fullName(d));
-      if (days > 500) seg.appendChild(make('span', null, pad2(i + 1)));
-      seg.addEventListener('click', function () {
-        dirTrack.stop();
-        dirTrack.scrollTo(el.dirCards[i]);
-        dirTrack.schedule(AUTO_SCROLL_RESUME_DELAY);
+    el.wallTiles = [];
+    C.eras.forEach(function (era) {
+      var idx = [];
+      DIRECTORS.forEach(function (d, i) { if (d.era === era.id) idx.push(i); });
+      if (!idx.length) return;
+      var first = DIRECTORS[idx[0]], last = DIRECTORS[idx[idx.length - 1]];
+      var box = make('section', 'era era--' + era.id);
+      var head = make('div', 'era-head');
+      head.appendChild(make('span', 'era-title', era.title));
+      var until = idx[idx.length - 1] === DIRECTORS.length - 1 ? t('present') : year(last.to);
+      head.appendChild(make('span', 'era-years', year(first.from) + ' — ' + until + ' · ' + idx.length + ' ' + (idx.length === 1 ? t('director') : 'Directors')));
+      box.appendChild(head);
+      var grid = make('div', 'era-grid');
+      idx.forEach(function (i) {
+        var d = DIRECTORS[i];
+        var tile = make('button', 'wtile' + (i === CUR_DIR ? ' wtile--current' : ''));
+        tile.setAttribute('aria-label', fullName(d));
+        var frame = make('span', 'wtile-frame');
+        frame.appendChild(img(d.photo, ''));
+        frame.appendChild(make('span', 'wtile-no', pad2(i + 1)));
+        tile.appendChild(frame);
+        tile.appendChild(make('span', 'wtile-name', surname(d)));
+        tile.addEventListener('click', function () { showDirector(i); });
+        grid.appendChild(tile);
+        el.wallTiles[i] = tile;
       });
-      el.ribbonBar.appendChild(seg);
+      box.appendChild(grid);
+      el.honourWall.appendChild(box);
     });
-    var first = start.getUTCFullYear(), lastY = end.getUTCFullYear();
-    for (var y = Math.ceil((first + 1) / 5) * 5; y <= lastY; y += 5) {
-      var tick = make('span', 'ribbon-year', String(y));
-      tick.style.left = ((Date.UTC(y, 0, 1) - start) / span * 100) + '%';
-      el.ribbonYears.appendChild(tick);
+
+    el.spotPrev.addEventListener('click', function () { showDirector(state.spot - 1, -1); });
+    el.spotNext.addEventListener('click', function () { showDirector(state.spot + 1, 1); });
+    addSwipe(el.spotCard, function (dir) { showDirector(state.spot + dir, dir); });
+    el.screens.directors.addEventListener('pointerdown', function () { if (state.screen === 'directors') holdSpot(); });
+  }
+
+  function renderSpot(i, direction, auto) {
+    var d = DIRECTORS[i];
+    state.spot = i;
+    el.spotPhoto.src = d.photo;
+    el.spotPhoto.alt = fullName(d);
+    el.spotNo.textContent = pad2(i + 1);
+    el.spotTag.textContent = i === CUR_DIR ? t('current') : appointmentTitle(d);
+    el.spotTag.className = 'tag' + (i === CUR_DIR ? ' tag--current' : (d.era === 'warfare' ? ' tag--gold' : ''));
+    el.spotRank.textContent = d.rank;
+    el.spotName.textContent = d.name;
+    el.spotPost.textContent = d.post || '';
+    el.spotTenure.textContent = tenureLong(d);
+    el.spotDuration.textContent = durationOf(d);
+
+    el.spotSuccession.innerHTML = '';
+    if (i > 0) el.spotSuccession.appendChild(successionChip(i - 1, t('precededBy'), -1));
+    if (i < DIRECTORS.length - 1) el.spotSuccession.appendChild(successionChip(i + 1, t('succeededBy'), 1));
+    if (d.commandant) {
+      var ci = indexWhere(COMMANDANTS, function (c) { return c.id === d.commandant; });
+      if (ci >= 0) {
+        var c = COMMANDANTS[ci];
+        var b = make('button', 'chip-btn chip-btn--gold');
+        b.appendChild(chipContent(commandantImg(c), t('alsoCommandant') + ' · ' + tenureYears(c), shortName(c)));
+        b.addEventListener('click', function () { openBio(ci); });
+        el.spotSuccession.appendChild(b);
+      }
     }
+
+    el.spotCount.innerHTML = '';
+    el.spotCount.appendChild(document.createTextNode(t('director') + ' '));
+    el.spotCount.appendChild(make('b', null, String(i + 1)));
+    el.spotCount.appendChild(document.createTextNode(' ' + t('of') + ' ' + DIRECTORS.length));
+    el.spotPrev.disabled = i === 0;
+    el.spotNext.disabled = i === DIRECTORS.length - 1;
+
+    el.wallTiles.forEach(function (tile, k) { tile.classList.toggle('is-active', k === i); });
+    restartAnimation(el.spotCard, direction ? (direction < 0 ? 'enter-prev' : 'enter-next') : null);
+
+    // progress bar shows the time left in the spotlight while it runs on its own
+    el.spotProgress.classList.remove('run');
+    void el.spotProgress.offsetWidth;
+    if (auto) { el.spotProgress.style.animationDuration = SPOT_INTERVAL + 'ms'; el.spotProgress.classList.add('run'); }
   }
 
-  function syncFocus() {
-    var track = el.dirTrack;
-    var max = track.scrollWidth - track.clientWidth;
-    var progress = max > 0 ? track.scrollLeft / max : 0.5;
-    var center = track.scrollLeft + track.clientWidth * (0.1 + 0.8 * progress);
-    var best = 0, bestDist = Infinity;
-    el.dirCards.forEach(function (c, i) {
-      var dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - center);
-      if (dist < bestDist) { bestDist = dist; best = i; }
-    });
-    el.dirCards.forEach(function (c, i) {
-      c.classList.toggle('is-focus', i === best);
-      el.ribbonBar.children[i].classList.toggle('is-focus', i === best);
-    });
+  function scheduleSpot(delay) {
+    stopSpot();
+    spotTimer = setTimeout(function () {
+      spotTimer = null;
+      renderSpot((state.spot + 1) % DIRECTORS.length, 1, true);
+      scheduleSpot(SPOT_INTERVAL);
+    }, delay);
+  }
+  function stopSpot() { if (spotTimer) { clearTimeout(spotTimer); spotTimer = null; } }
+  function holdSpot() {
+    el.spotProgress.classList.remove('run');
+    scheduleSpot(SPOT_RESUME);
   }
 
-  /* ---------------- director profile overlay ---------------- */
+  function enterDirectors() {
+    renderSpot(state.spot || 0, null, true);
+    scheduleSpot(SPOT_INTERVAL);
+  }
+
+  // Shows director i in the spotlight at a visitor's request (holds the auto-advance).
+  function showDirector(i, direction) {
+    if (i < 0 || i >= DIRECTORS.length) return;
+    if (state.screen !== 'directors') showScreen('directors');
+    renderSpot(i, direction || (i > state.spot ? 1 : -1), false);
+    holdSpot();
+    resetIdleTimer();
+  }
+
   function chipContent(visual, label, name) {
     var frag = document.createDocumentFragment();
     var thumb = make('span', 'chip-thumb');
@@ -544,63 +580,11 @@
     return frag;
   }
 
-  function openProfile(i, direction) {
-    if (i < 0 || i >= DIRECTORS.length) return;
-    dirTrack.stop();
-    var d = DIRECTORS[i];
-    state.profileIndex = i;
-
-    el.profileOrdinal.textContent = pad2(i + 1);
-    el.profilePhoto.src = d.photo;
-    el.profilePhoto.alt = fullName(d);
-    el.profileKicker.textContent = t('director') + ' ' + (i + 1) + ' ' + t('of') + ' ' + DIRECTORS.length;
-    el.profileTag.textContent = i === CUR_DIR ? t('current') : appointmentTitle(d);
-    el.profileTag.className = 'tag' + (i === CUR_DIR ? ' tag--current' : (d.era === 'warfare' ? ' tag--gold' : ''));
-    el.profileRank.textContent = d.rank;
-    el.profileName.textContent = d.name;
-    el.profilePost.textContent = d.post || '';
-    el.profileAppt.textContent = appointmentTitle(d);
-    el.profileTenure.textContent = tenureLong(d);
-    el.profileDuration.textContent = durationOf(d);
-
-    el.profileSuccession.innerHTML = '';
-    if (i > 0) el.profileSuccession.appendChild(successionChip(i - 1, t('precededBy'), -1));
-    if (i < DIRECTORS.length - 1) el.profileSuccession.appendChild(successionChip(i + 1, t('succeededBy'), 1));
-    if (d.commandant) {
-      var ci = indexWhere(COMMANDANTS, function (c) { return c.id === d.commandant; });
-      if (ci >= 0) {
-        var c = COMMANDANTS[ci];
-        var b = make('button', 'chip-btn chip-btn--gold');
-        b.appendChild(chipContent(commandantImg(c), t('alsoCommandant') + ' · ' + tenureYears(c), shortName(c)));
-        b.addEventListener('click', function () { closeProfile(); openBio(ci); });
-        el.profileSuccession.appendChild(b);
-      }
-    }
-
-    el.profilePrev.disabled = i === 0;
-    el.profileNext.disabled = i === DIRECTORS.length - 1;
-
-    var wasOpen = !el.profile.classList.contains('hidden');
-    el.profile.classList.remove('hidden');
-    el.profile.setAttribute('aria-hidden', 'false');
-    restartAnimation(el.profileBody, wasOpen ? (direction < 0 ? 'enter-prev' : 'enter-next') : null);
-    if (state.screen === 'directors') dirTrack.scrollTo(el.dirCards[i]);
-    resetIdleTimer();
-  }
-
   function successionChip(i, label, dir) {
     var b = make('button', 'chip-btn');
     b.appendChild(chipContent(DIRECTORS[i].photo, label, shortName(DIRECTORS[i])));
-    b.addEventListener('click', function () { openProfile(i, dir); });
+    b.addEventListener('click', function () { showDirector(i, dir); });
     return b;
-  }
-
-  function closeProfile() {
-    if (state.profileIndex === null) return;
-    state.profileIndex = null;
-    el.profile.classList.add('hidden');
-    el.profile.setAttribute('aria-hidden', 'true');
-    if (state.screen === 'directors') dirTrack.schedule(AUTO_SCROLL_RESUME_DELAY);
   }
 
   /* ---------------- swipe ---------------- */
@@ -637,21 +621,19 @@
       attract: $('screen-attract'), home: $('screen-home'),
       commandants: $('screen-commandants'), directors: $('screen-directors'), bio: $('screen-bio')
     };
-    el.attractWall = $('attract-wall'); el.attractStats = $('attract-stats');
+    el.hudTape = $('hud-tape'); el.scopeBlips = $('scope-blips'); el.attractStats = $('attract-stats');
     el.homeCmdArt = $('home-commandants-art'); el.homeCmdMeta = $('home-commandants-meta');
     el.homeDirArt = $('home-directors-art'); el.homeDirMeta = $('home-directors-meta');
     el.cmdYears = $('cmd-years'); el.cmdChips = $('cmd-chips'); el.cmdTrack = $('cmd-track');
-    el.dirYears = $('dir-years'); el.dirChips = $('dir-chips'); el.dirTrack = $('dir-track');
-    el.ribbonBar = $('ribbon-bar'); el.ribbonYears = $('ribbon-years');
+    el.dirYears = $('dir-years'); el.honourWall = $('honour-wall');
+    el.spotCard = $('spot-card'); el.spotPhoto = $('spot-photo'); el.spotNo = $('spot-no'); el.spotProgress = $('spot-progress');
+    el.spotTag = $('spot-tag'); el.spotRank = $('spot-rank'); el.spotName = $('spot-name'); el.spotPost = $('spot-post');
+    el.spotTenure = $('spot-tenure'); el.spotDuration = $('spot-duration'); el.spotSuccession = $('spot-succession');
+    el.spotCount = $('spot-count'); el.spotPrev = $('spot-prev'); el.spotNext = $('spot-next');
     el.bioWrap = $('bio-wrap'); el.bioFrame = $('bio-frame'); el.bioOrdinal = $('bio-ordinal');
     el.bioService = $('bio-service'); el.bioRank = $('bio-rank'); el.bioName = $('bio-name');
     el.bioPost = $('bio-post'); el.bioFullname = $('bio-fullname'); el.bioFacts = $('bio-facts');
     el.bioPanel = $('bio-panel'); el.bioLinks = $('bio-links'); el.bioPrev = $('bio-prev'); el.bioNext = $('bio-next');
-    el.profile = $('profile'); el.profileBody = $('profile-body'); el.profileOrdinal = $('profile-ordinal');
-    el.profilePhoto = $('profile-photo'); el.profileKicker = $('profile-kicker'); el.profileTag = $('profile-tag');
-    el.profileRank = $('profile-rank'); el.profileName = $('profile-name'); el.profilePost = $('profile-post');
-    el.profileAppt = $('profile-appt'); el.profileTenure = $('profile-tenure'); el.profileDuration = $('profile-duration');
-    el.profileSuccession = $('profile-succession'); el.profilePrev = $('profile-prev'); el.profileNext = $('profile-next');
     el.idleOverlay = $('idle-overlay');
     el.btnSound = $('btn-sound');
 
@@ -669,22 +651,15 @@
       b.addEventListener('click', function () { showScreen(b.getAttribute('data-nav')); });
     });
 
-    $('profile-close').addEventListener('click', closeProfile);
-    $('profile-backdrop').addEventListener('click', closeProfile);
-    el.profilePrev.addEventListener('click', function () { openProfile(state.profileIndex - 1, -1); });
-    el.profileNext.addEventListener('click', function () { openProfile(state.profileIndex + 1, 1); });
-    addSwipe($('profile-panel'), function (dir) { openProfile(state.profileIndex + dir, dir); });
-
     $('bio-back').addEventListener('click', function () { showScreen('commandants'); });
     el.bioPrev.addEventListener('click', function () { stepBio(-1); });
     el.bioNext.addEventListener('click', function () { stepBio(1); });
     addSwipe(el.bioFrame, stepBio);
 
     document.addEventListener('keydown', function (e) {
-      if (state.profileIndex !== null) {
-        if (e.key === 'Escape') closeProfile();
-        if (e.key === 'ArrowLeft') openProfile(state.profileIndex - 1, -1);
-        if (e.key === 'ArrowRight') openProfile(state.profileIndex + 1, 1);
+      if (state.screen === 'directors') {
+        if (e.key === 'ArrowLeft') showDirector(state.spot - 1, -1);
+        if (e.key === 'ArrowRight') showDirector(state.spot + 1, 1);
       } else if (state.screen === 'bio') {
         if (e.key === 'ArrowLeft') stepBio(-1);
         if (e.key === 'ArrowRight') stepBio(1);

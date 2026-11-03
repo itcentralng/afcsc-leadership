@@ -58,34 +58,47 @@
 
         <!-- ============ WELCOME ============ -->
         <section class="screen active" id="screen-attract">
-          <div class="wall" id="attract-wall" aria-hidden="true"></div>
-          <div class="attract-veil" aria-hidden="true"></div>
-          <div class="attract-content">
-            <div class="radar" aria-hidden="true">
-              <span class="radar-ring radar-ring--1"></span>
-              <span class="radar-ring radar-ring--2"></span>
-              <span class="radar-ring radar-ring--3"></span>
-              <span class="radar-sweep"></span>
-              <span class="radar-ticks"></span>
-              <!-- the two crests back to back, turning: AFCSC, then the Air Force -->
+          <!-- heading tape across the top, as on a head-up display -->
+          <div class="hud-tape" aria-hidden="true"><div class="hud-tape-track" id="hud-tape"></div><span class="hud-tape-caret"></span></div>
+          <div class="horizon" aria-hidden="true"></div>
+
+          <div class="cockpit">
+            <div class="cockpit-text">
+              <p class="cockpit-kicker"><span class="cockpit-kicker-bar"></span><span data-i18n="college"></span></p>
+              <h1 class="cockpit-title">
+                <span class="cockpit-title-small">Department of</span>
+                <span class="cockpit-title-big">Air Warfare</span>
+              </h1>
+              <p class="cockpit-hof"><span data-i18n="hallOfFame"></span></p>
+              <p class="cockpit-tagline" data-i18n="tagline"></p>
+              <div class="gauges" id="attract-stats"></div>
+              <button class="hud-cta" id="attract-cta">
+                <span class="hud-cta-corner hud-cta-corner--tl"></span><span class="hud-cta-corner hud-cta-corner--tr"></span>
+                <span class="hud-cta-corner hud-cta-corner--bl"></span><span class="hud-cta-corner hud-cta-corner--br"></span>
+                <span class="hud-cta-dot"></span>
+                <span data-i18n="touchToBegin"></span>
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+
+            <!-- radar scope: crests turning at the centre, portraits as blips
+                 that light up as the sweep passes over them -->
+            <div class="scope" aria-hidden="true">
+              <span class="scope-ring scope-ring--1"></span>
+              <span class="scope-ring scope-ring--2"></span>
+              <span class="scope-ring scope-ring--3"></span>
+              <span class="scope-cross"></span>
+              <span class="scope-bearing"></span>
+              <span class="scope-sweep"></span>
+              <div class="scope-blips" id="scope-blips"></div>
               <div class="crest-flip">
                 <div class="crest-flip-spin">
-                  <img class="crest-face crest-face--front" src="assets/icons/afcsc.png" alt="Armed Forces Command and Staff College" />
-                  <img class="crest-face crest-face--back" src="assets/icons/naf.png" alt="Nigerian Air Force" />
+                  <img class="crest-face crest-face--front" src="assets/icons/afcsc.png" alt="" />
+                  <img class="crest-face crest-face--back" src="assets/icons/naf.png" alt="" />
                 </div>
               </div>
             </div>
-            <p class="attract-kicker" data-i18n="college"></p>
-            <h1 class="attract-title" data-i18n="department"></h1>
-            <div class="attract-rule"><span></span><em data-i18n="hallOfFame"></em><span></span></div>
-            <p class="attract-tagline" data-i18n="tagline"></p>
-            <button class="attract-cta" id="attract-cta">
-              <span class="attract-cta-pulse"></span>
-              <span data-i18n="touchToBegin"></span>
-              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
           </div>
-          <div class="attract-stats" id="attract-stats"></div>
         </section>
 
         <!-- ============ HOME ============ -->
@@ -143,28 +156,44 @@
           </div>
         </section>
 
-        <!-- ============ DIRECTORS ============ -->
+        <!-- ============ DIRECTORS: spotlight + honour wall ============ -->
         <section class="screen" id="screen-directors">
-          <div class="list-header">
-            <img class="list-crest list-crest--naf" src="assets/icons/naf.png" alt="" />
-            <div class="list-title">
-              <p class="eyebrow" id="dir-years"></p>
-              <h2 class="section-title" data-i18n="directorsTitle"></h2>
+          <div class="dir-layout">
+            <div class="spot">
+              <div class="spot-head">
+                <img class="list-crest list-crest--naf" src="assets/icons/naf.png" alt="" />
+                <div>
+                  <p class="eyebrow" id="dir-years"></p>
+                  <h2 class="spot-title" data-i18n="directorsTitle"></h2>
+                </div>
+              </div>
+              <div class="spot-card" id="spot-card">
+                <div class="spot-portrait">
+                  <div class="spot-frame"><img id="spot-photo" src="" alt="" /></div>
+                  <span class="spot-no" id="spot-no"></span>
+                  <span class="spot-progress"><span id="spot-progress"></span></span>
+                </div>
+                <div class="spot-info" id="spot-info">
+                  <span class="tag" id="spot-tag"></span>
+                  <p class="spot-rank" id="spot-rank"></p>
+                  <h3 class="spot-name" id="spot-name"></h3>
+                  <p class="spot-post" id="spot-post"></p>
+                  <dl class="spot-facts">
+                    <div><dt data-i18n="tenure"></dt><dd id="spot-tenure"></dd></div>
+                    <div><dt data-i18n="duration"></dt><dd id="spot-duration"></dd></div>
+                  </dl>
+                  <div class="spot-succession" id="spot-succession"></div>
+                </div>
+              </div>
+              <div class="spot-foot">
+                <span class="spot-count" id="spot-count"></span>
+                <div class="spot-nav">
+                  <button class="round-btn" id="spot-prev" aria-label="Previous director"><svg viewBox="0 0 24 24"><path d="M15 6 9 12l6 6"/></svg></button>
+                  <button class="round-btn" id="spot-next" aria-label="Next director"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
+                </div>
+              </div>
             </div>
-            <div class="list-tools">
-              <div class="chips" id="dir-chips"></div>
-              <span class="list-hint" data-i18n="tapPortrait"></span>
-            </div>
-          </div>
-          <div class="track-wrap">
-            <div class="track" id="dir-track"></div>
-          </div>
-          <div class="ribbon">
-            <div class="ribbon-label" data-i18n="succession"></div>
-            <div class="ribbon-body">
-              <div class="ribbon-bar" id="ribbon-bar"></div>
-              <div class="ribbon-years" id="ribbon-years"></div>
-            </div>
+            <div class="honour-wall" id="honour-wall"></div>
           </div>
         </section>
 
@@ -201,41 +230,6 @@
         </section>
 
       </main>
-
-      <!-- ============ DIRECTOR PROFILE OVERLAY ============ -->
-      <div class="profile hidden" id="profile" aria-hidden="true">
-        <div class="profile-backdrop" id="profile-backdrop"></div>
-        <div class="profile-panel" id="profile-panel">
-          <button class="icon-btn profile-close" id="profile-close" aria-label="Close">
-            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
-          </button>
-          <button class="round-btn profile-nav profile-nav--prev" id="profile-prev" aria-label="Previous director">
-            <svg viewBox="0 0 24 24"><path d="M15 6 9 12l6 6"/></svg>
-          </button>
-          <button class="round-btn profile-nav profile-nav--next" id="profile-next" aria-label="Next director">
-            <svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg>
-          </button>
-          <div class="profile-body" id="profile-body">
-            <div class="profile-portrait">
-              <span class="profile-ordinal" id="profile-ordinal"></span>
-              <div class="profile-frame"><img id="profile-photo" src="" alt="" /></div>
-            </div>
-            <div class="profile-info">
-              <p class="eyebrow" id="profile-kicker"></p>
-              <span class="tag" id="profile-tag"></span>
-              <p class="profile-rank" id="profile-rank"></p>
-              <h2 class="profile-name" id="profile-name"></h2>
-              <p class="profile-post" id="profile-post"></p>
-              <div class="profile-facts">
-                <div class="fact"><span class="fact-label" data-i18n="appointment"></span><span class="fact-value" id="profile-appt"></span></div>
-                <div class="fact"><span class="fact-label" data-i18n="duration"></span><span class="fact-value" id="profile-duration"></span></div>
-                <div class="fact fact--wide"><span class="fact-label" data-i18n="tenure"></span><span class="fact-value" id="profile-tenure"></span></div>
-              </div>
-              <div class="profile-succession" id="profile-succession"></div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="idle-overlay hidden" id="idle-overlay"><span data-i18n="idleReturnNote"></span></div>
 

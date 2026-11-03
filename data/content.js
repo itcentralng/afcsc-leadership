@@ -43,7 +43,7 @@ var HOF_CONTENT = {
     readBiography: 'Read biography',
     biography: 'Biography',
     alsoDirector: 'Also served as Director',
-    alsoCommandant: 'Later Commandant of the College',
+    alsoCommandant: 'Later Commandant',
     all: 'All',
     tapPortrait: 'Tap a portrait to learn more',
     succession: 'Line of succession',
