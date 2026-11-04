@@ -51,6 +51,7 @@ var HOF_CONTENT = {
     succession: 'Line of succession',
     back: 'Back',
     portraitPending: 'Portrait to follow',
+    bioPending: 'Biography to follow.',
     idleReturnNote: 'Returning to the welcome screen…'
   },
 
@@ -101,7 +102,7 @@ var HOF_CONTENT = {
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'FM Makinde', post: 'DSS psc(+) ndc MSc ACA', era: 'warfare', from: '2015-02-09', to: '2016-02-16', photo: 'assets/directors/27-air-cdre-fm-makinde.jpg' },
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AS Liman', post: 'FSS MSS DSS psc(++) BSc PGD FCAI mni', era: 'warfare', from: '2016-02-22', to: '2017-05-30', photo: 'assets/directors/28-air-cdre-as-liman.jpg', commandant: 'as-liman' },
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'NK Kumzhi', post: 'DSS psc(++) fdc MSc', era: 'warfare', from: '2017-05-30', to: '2018-08-27', photo: 'assets/directors/29-air-cdre-nk-kumzhi.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'HI Alhaji', post: 'DSS psc(+) fndu nswc BEng MTech MSc', era: 'warfare', from: '2018-08-28', to: '2020-01-05', photo: 'assets/directors/30-air-cdre-hi-alhaji.jpg' },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'HI Alhaji', post: 'DSS psc(+) fndu nswc BEng MTech MSc', era: 'warfare', from: '2018-08-28', to: '2020-01-05', photo: 'assets/directors/30-air-cdre-hi-alhaji.jpg', commandant: 'hi-alhaji' },
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AY Dari', post: 'DSS psc(+) ndc BSc MDS MSDS AMNIM', era: 'warfare', from: '2020-01-06', to: '2021-03-31', photo: 'assets/directors/31-air-cdre-ay-dari.jpg' },
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'CO Obiabaka', post: 'DSS psc(+) fdc DPA MIASS MBA Law MNIM MSPSP MCIPM', era: 'warfare', from: '2021-03-31', to: '2023-01-06', photo: 'assets/directors/32-air-cdre-co-obiabaka.jpg' },
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'EA Ola', post: 'MSS psc(+) fawc(+) fdc ATO BEng MIADS COREN MNIM', era: 'warfare', from: '2023-01-06', to: '2023-07-10', photo: 'assets/directors/33-air-cdre-ea-ola.jpg' },
@@ -114,20 +115,22 @@ var HOF_CONTENT = {
      biography gives (the 24th is not in the documents yet).
      Sources: Leaders/Commandants/profile of Comdts for DLW Hallof Fame.docx,
      "Air Vice Marshal Oluroti Anthony Tuwase.docx" and "Profile AVM EO Alade.doc".
+     Tenure dates are those on the commandants' portraits on the Hall of
+     Fame wall (photographed: Leaders/Commandants/wall-portraits/), which
+     differ in places from the dates in the documents.
      The wording is the documents' own, except that their closing line
      ("...improved learning in the Army Faculty / Department of Land
      Warfare") now reads "...at the College" for this Air Warfare hall.
 
-     photo: null shows the officer's initials on the College crest until the
-     portrait is matched.
-     The unnamed photos are in assets/commandants/unidentified/
-     (photo-01.png … photo-13.png); see Leaders/Commandants/photo-key.jpg.
+     photo: the pencil portrait from the wall, straightened and cropped
+     (assets/commandants/). photo: null shows the officer's initials instead.
+     bio: [] shows "Biography to follow".
      ---------------------------------------------------------- */
   commandants: [
     {
       id: 'go-ejiga', no: 1, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'GO Ejiga', serviceNo: 'N/230',
       post: 'DSS FSS psc RM NSM GSM', fullName: 'Geoffrey Obiaje Ejiga',
-      from: '1975-09-23', to: '1978-09-01', photo: null,
+      from: '1976-09-01', to: '1978-08-31', photo: 'assets/commandants/01-go-ejiga.jpg',
       facts: [
         { label: 'Born', value: '15 February 1941, Adoka' },
         { label: 'Hometown', value: 'Otukpo LGA, Benue State' },
@@ -142,7 +145,7 @@ var HOF_CONTENT = {
     {
       id: 'jo-bajowa', no: 2, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'JO Bajowa', serviceNo: 'N/199',
       post: 'FSS psc RM GSM DSM NSM', fullName: 'Joseph Oluyemi Bajowa',
-      from: '1978-01-01', to: '1979-12-15', photo: null,
+      from: '1978-09-01', to: '1979-12-05', photo: 'assets/commandants/02-jo-bajowa.jpg',
       facts: [
         { label: 'Born', value: '27 December 1938, Igbotako-Okitipupa' },
         { label: 'Hometown', value: 'Okitipupa LGA, Ondo State' },
@@ -157,7 +160,7 @@ var HOF_CONTENT = {
     {
       id: 'mi-wushishi', no: 3, service: 'army', rank: 'Lieutenant General', rankShort: 'Lt Gen', name: 'MI Wushishi', serviceNo: 'N/233',
       post: 'FSS psc DSM NSM RM GSM NAM', fullName: 'Mohammed Inuwa Wushishi',
-      from: '1980-03-03', to: '1980-04-15', photo: null,
+      from: '1980-03-16', to: '1980-04-27', photo: 'assets/commandants/03-mi-wushishi.jpg',
       facts: [
         { label: 'Born', value: '1 January 1940, Wushishi' },
         { label: 'Hometown', value: 'Wushishi LGA, Niger State' },
@@ -172,7 +175,7 @@ var HOF_CONTENT = {
     {
       id: 'dy-bali', no: 4, service: 'army', rank: 'General', rankShort: 'Gen', name: 'DY Bali', serviceNo: 'N/453',
       post: 'FSS psc OFR GCON', fullName: 'Domkat Yah Bali',
-      from: '1981-01-05', to: '1983-07-31', photo: null,
+      from: '1981-01-02', to: '1983-09-03', photo: 'assets/commandants/04-dy-bali.jpg',
       facts: [
         { label: 'Born', value: '27 February 1940, Zamko' },
         { label: 'Hometown', value: 'Langtang LGA, Plateau State' },
@@ -187,7 +190,7 @@ var HOF_CONTENT = {
     {
       id: 'ao-aduloju', no: 5, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'AO Aduloju', serviceNo: 'N/396',
       post: 'FSS psc mni GSM NSM DSM RM', fullName: 'Alfred Olasehinde Aduloju',
-      from: '1983-08-01', to: '1984-01-09', photo: null,
+      from: '1983-09-04', to: '1984-01-16', photo: 'assets/commandants/05-ao-aduloju.jpg',
       facts: [
         { label: 'Born', value: '23 April 1939, Ikare' },
         { label: 'Hometown', value: 'Ikare Akoko LGA, Ondo State' },
@@ -202,7 +205,7 @@ var HOF_CONTENT = {
     {
       id: 'pu-omu', no: 6, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'PU Omu', serviceNo: 'N/385',
       post: 'FSS psc fdc GSM NSM DSM RSM', fullName: 'Paul Ufuoma Omu',
-      from: '1984-01-09', to: '1987-12-30', photo: null,
+      from: '1984-01-17', to: '1987-12-31', photo: 'assets/commandants/06-pu-omu.jpg',
       facts: [
         { label: 'Born', value: '1 July 1940, Igbide' },
         { label: 'Hometown', value: 'Isoko LGA, Delta State' },
@@ -217,7 +220,7 @@ var HOF_CONTENT = {
     {
       id: 'ab-mamman', no: 7, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'AB Mamman', serviceNo: 'N/611',
       post: 'FSS psc mni DSM NSM RM GSM SJM', fullName: 'Abdullahi Bagudu Mamman',
-      from: '1987-12-31', to: '1990-09-02', photo: null,
+      from: '1988-01-31', to: '1990-09-02', photo: 'assets/commandants/07-ab-mamman.jpg',
       facts: [
         { label: 'Born', value: '21 July 1944, Nyaba-Abaji' },
         { label: 'Hometown', value: 'Abaji Area Council, FCT Abuja' },
@@ -232,7 +235,7 @@ var HOF_CONTENT = {
     {
       id: 'mb-haladu', no: 8, service: 'army', rank: 'Lieutenant General', rankShort: 'Lt Gen', name: 'MB Haladu', serviceNo: 'N/562',
       post: 'DSS MSS FSS psc mni SJM', fullName: 'Mohammed Balarabe Haladu',
-      from: '1990-09-03', to: '1992-01-30', photo: null,
+      from: '1990-09-02', to: '1992-01-30', photo: 'assets/commandants/08-mb-haladu.jpg',
       facts: [
         { label: 'Born', value: '1 April 1944, Kano' },
         { label: 'Hometown', value: 'Kano Municipal LGA, Kano State' },
@@ -247,7 +250,7 @@ var HOF_CONTENT = {
     {
       id: 'jn-dogonyaro', no: 9, service: 'army', rank: 'Lieutenant General', rankShort: 'Lt Gen', name: 'JN Dogonyaro', serviceNo: 'N/649',
       post: 'CFR DSS MSS FSS psc mni DSM NSM GSM NDM RM SJM', fullName: 'Joshua Nimyel Dogonyaro',
-      from: '1992-01-31', to: '1993-09-20', photo: null,
+      from: '1992-01-31', to: '1993-09-19', photo: 'assets/commandants/09-jn-dogonyaro.jpg',
       facts: [
         { label: 'Born', value: '6 September 1942, Dakan-Kuka' },
         { label: 'Hometown', value: 'Langtang LGA, Plateau State' },
@@ -262,7 +265,7 @@ var HOF_CONTENT = {
     {
       id: 'eu-unimna', no: 10, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'EU Unimna', serviceNo: 'N/1362',
       post: 'DSS MSS FSS psc(+) USndu NSM GSM DSM RM', fullName: 'Edward Ushie Unimna',
-      from: '1993-09-20', to: '1996-07-28', photo: null,
+      from: '1993-09-20', to: '1996-09-16', photo: 'assets/commandants/10-eu-unimna.jpg',
       facts: [
         { label: 'Born', value: '20 June 1946, Ohong' },
         { label: 'Hometown', value: 'Obudu LGA, Cross River State' },
@@ -277,7 +280,7 @@ var HOF_CONTENT = {
     {
       id: 'jm-inienger', no: 11, service: 'army', rank: 'Major General', rankShort: 'Maj Gen', name: 'JM Inienger', serviceNo: 'N/712',
       post: 'DSS MSS FSS psc(+) mni NSM GSM DSM RM', fullName: 'John Mark Inienger',
-      from: '1996-07-29', to: '1999-05-31', photo: null,
+      from: '1996-09-17', to: '1999-06-16', photo: 'assets/commandants/11-jm-inienger.jpg',
       facts: [
         { label: 'Born', value: '16 April 1945, Mkar-Gboko' },
         { label: 'Hometown', value: 'Vandeikya LGA, Benue State' },
@@ -292,7 +295,7 @@ var HOF_CONTENT = {
     {
       id: 'ao-ogundana', no: 12, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'AO Ogundana', serviceNo: '',
       post: 'DSS psc(+) fwc CON', fullName: 'Anthony Olusegun Ogundana',
-      from: '1999-07-17', to: '2003-03-30', photo: null,
+      from: '1999-07-31', to: '2003-03-31', photo: 'assets/commandants/12-ao-ogundana.jpg',
       facts: [
         { label: 'Born', value: '17 August 1950' },
         { label: 'Cadet course', value: '7 Regular Course, NDA' }
@@ -306,7 +309,7 @@ var HOF_CONTENT = {
     {
       id: 'sa-odesola', no: 13, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'SA Odesola', serviceNo: 'NAF/475',
       post: 'DSS fwc', fullName: 'Samuel Akinyemi Odesola',
-      from: '2003-03-31', to: '2006-01-06', photo: null,
+      from: '2003-03-31', to: '2006-01-06', photo: 'assets/commandants/13-sa-odesola.jpg',
       facts: [
         { label: 'Born', value: '9 February 1952, Zaria' },
         { label: 'Enlisted', value: '4 January 1971 · 9 Regular Course' },
@@ -321,7 +324,7 @@ var HOF_CONTENT = {
     {
       id: 'er-ejeh', no: 14, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'ER Ejeh', serviceNo: '',
       post: 'FSS DSS psc(+) fwc(+) MSc', fullName: 'Emmanuel Robert Ejeh',
-      from: '2006-01-06', to: '2008-09-03', photo: null,
+      from: '2006-01-06', to: '2008-09-03', photo: 'assets/commandants/14-er-ejeh.jpg',
       facts: [
         { label: 'Born', value: '17 April 1952' },
         { label: 'Commissioned', value: 'June 1975 · Pilot Officer' }
@@ -335,7 +338,7 @@ var HOF_CONTENT = {
     {
       id: 'sbe-gberevbie', no: 15, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'SBE Gberevbie', serviceNo: '',
       post: 'DSS psc(+) fwc(+) LLB BL MSc OON', fullName: 'Sonni Bernard Enemuadia Gberevbie',
-      from: '2008-10-20', to: '2009-08-03', photo: null,
+      from: '2008-10-20', to: '2009-08-03', photo: 'assets/commandants/15-sbe-gberevbie.jpg',
       facts: [
         { label: 'Born', value: '15 November 1953' },
         { label: 'Enlisted', value: '26 December 1973 · Short Service Course 7' }
@@ -349,7 +352,7 @@ var HOF_CONTENT = {
     {
       id: 'sa-leks', no: 16, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'SA Leks', serviceNo: '',
       post: 'DSS psc(+) fwc MSc', fullName: 'Sunday Ali Leks',
-      from: '2009-08-03', to: '2010-11-11', photo: null, director: 'SA Leks',
+      from: '2009-08-03', to: '2010-11-11', photo: 'assets/commandants/16-sa-leks.jpg', director: 'SA Leks',
       facts: [
         { label: 'Born', value: 'Daika, Mangu LGA, Plateau State' },
         { label: 'Commissioned', value: '1978 · Pilot Officer' }
@@ -363,7 +366,7 @@ var HOF_CONTENT = {
     {
       id: 'at-muazu', no: 17, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'AT Mu’azu', serviceNo: 'NAF/1067',
       post: 'OON DSS psc(+) fwc MSc FNISP', fullName: 'Ahmad Tijjani Mu’azu',
-      from: '2010-11-11', to: '2012-11-14', photo: null,
+      from: '2010-11-11', to: '2012-11-14', photo: 'assets/commandants/17-at-muazu.jpg',
       facts: [
         { label: 'Born', value: '6 September 1957, Gombe' },
         { label: 'Enlisted', value: '12 July 1976 · Short Service Course 12' },
@@ -378,7 +381,7 @@ var HOF_CONTENT = {
     {
       id: 'ia-kure', no: 18, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'IA Kure', serviceNo: '',
       post: 'DSS ndc psc(+) ACIPM BSc PGDA MBA MSc', fullName: 'Ibrahim Abdullahi Kure',
-      from: '2012-11-14', to: '2012-12-03', photo: null,
+      from: '2012-11-14', to: '2012-12-03', photo: 'assets/commandants/18-ia-kure.jpg',
       facts: [
         { label: 'Born', value: '20 February 1959, Lapai, Niger State' },
         { label: 'Cadet course', value: '23 Regular Course, NDA' },
@@ -393,7 +396,7 @@ var HOF_CONTENT = {
     {
       id: 'ee-osim', no: 19, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'EE Osim', serviceNo: '',
       post: 'DSS psc(+) mni', fullName: 'Eko Effiom Osim',
-      from: '2012-11-30', to: '2014-01-20', photo: null,
+      from: '2012-12-03', to: '2014-01-20', photo: 'assets/commandants/19-ee-osim.jpg',
       facts: [
         { label: 'Born', value: '25 June 1958, Usumutong, Cross River State' },
         { label: 'Enlisted', value: '7 April 1978 · Regular Combatant' }
@@ -407,7 +410,7 @@ var HOF_CONTENT = {
     {
       id: 'jc-ifemeje', no: 20, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'JC Ifemeje', serviceNo: '',
       post: 'MoSS FSS MSS DSS BSc psc(+) ndc', fullName: '',
-      from: '2014-01-20', to: '2015-08-31', photo: null,
+      from: '2014-01-20', to: '2015-08-31', photo: 'assets/commandants/20-jc-ifemeje.jpg',
       facts: [
         { label: 'Born', value: '27 January 1960, Ugah, Anambra State' },
         { label: 'Cadet course', value: '28 Regular Course, NDA' },
@@ -422,7 +425,7 @@ var HOF_CONTENT = {
     {
       id: 'sa-dambo', no: 21, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'SA Dambo', serviceNo: '',
       post: 'FSS MSS DSS GSS MSc psc(+) ndc', fullName: '',
-      from: '2015-08-31', to: '2017-12-28', photo: null,
+      from: '2015-08-31', to: '2017-12-28', photo: 'assets/commandants/21-sa-dambo.jpg',
       facts: [
         { label: 'Born', value: '1 January 1962, Katsina State' },
         { label: 'Cadet course', value: '29 Regular Course, NDA' },
@@ -437,7 +440,7 @@ var HOF_CONTENT = {
     {
       id: 'ls-alao', no: 22, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'LS Alao', serviceNo: '',
       post: 'FSS MSS DSS GSS psc(+) fndc MNIM MCIPS(UK)', fullName: 'Lawal Shittu Alao',
-      from: '2017-12-28', to: '2020-01-15', photo: null,
+      from: '2017-12-28', to: '2020-01-15', photo: 'assets/commandants/22-ls-alao.jpg',
       facts: [
         { label: 'Born', value: '2 August 1966, Oyo State' },
         { label: 'Enlisted', value: '1 June 1984 · University Cadet Course 2' },
@@ -452,7 +455,7 @@ var HOF_CONTENT = {
     {
       id: 'as-liman', no: 23, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'AS Liman', serviceNo: '',
       post: 'DSS psc(++) BSc PGDPA FCAI AMNIM mni FCIPM', fullName: 'Abubakar Sadiq Liman',
-      from: '2020-01-15', to: null, photo: null, director: 'AS Liman',
+      from: '2020-01-15', to: '2021-03-09', photo: 'assets/commandants/23-as-liman.jpg', director: 'AS Liman',
       facts: [
         { label: 'Born', value: '1 January, Lapai, Niger State' },
         { label: 'Cadet course', value: '37 Regular Course, NDA' }
@@ -464,33 +467,9 @@ var HOF_CONTENT = {
       ]
     },
     {
-      /* The Twenty Fourth Commandant is not in the documents yet. */
-      id: 'pending-24', no: 24, pending: true, service: null, rank: '', rankShort: '', name: '', serviceNo: '',
-      post: '', fullName: '', from: null, to: null, photo: null, facts: [], bio: []
-    },
-    {
-      id: 'oa-tuwase', no: 25, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'OA Tuwase', serviceNo: '',
-      post: 'GSS GSM psc(+) fawc(Pak) MSc ATO', fullName: 'Oluroti Anthony Tuwase',
-      /* The profile says "7 Jan 20", which clashes with AVM Liman's 15 Jan 2020.
-         To be confirmed. */
-      from: null, to: null, photo: 'assets/commandants/avm-oa-tuwase.jpg',
-      facts: [
-        { label: 'Born', value: '1 December 1965, Onitsha' },
-        { label: 'Hometown', value: 'Kabba/Bunu LGA, Kogi State' },
-        { label: 'Commissioned', value: 'September 1990 · 37 Regular Course' }
-      ],
-      bio: [
-        'Air Vice Marshal Oluroti Anthony Tuwase was born on 1 Dec 1965 at Onitsha. He hails from Kabba/Bunnu Local Government Area of Kogi State. He was admitted into the Nigerian Defence Academy in 1985 as a member of 37 Regular Combatant course. He was Commissioned in September 1990 as a Pilot Officer in the Nigerian Air Force (NAF). He attended several training courses amongst which include Orientation Engineering Course at the then Technical Training Group now Air Force Institute of Technology. He was type-rated Alpha Jet Engine in 1992 at Air Weapon School at New-Bussa.',
-        'The Senior officer also attended the Junior and Senior Staff Course at this prestigious Armed Forces Command and Staff College Jaji. The Senior officer returned to the College as a Directing Staff. AVM OA Tuwase has held several Command, Staff and Instructional appointments, prominent amongst which are; Officer Commanding Armament Squadron, Nigerian Air Force Detachment ECOMOG in Liberia and Sierra Leone, Command Armament Officer HQ Logistics Command Ikeja and Deputy Director Ground Safety HQ NAF. He was also the Commander of the 405 Central Armament Depot and Director of Armament HQ NAF. Air Vice Marshal OA Tuwase was the Director of Procurement Logistic Branch HQ NAF before being appointed as the Twenty Fifth Commandant of the Armed Forces Command and Staff College.',
-        'Air Vice Marshal OA Tuwase is highly recognized and honoured for his exemplary leadership, professionalism and great inputs to ensure conducive environment for improved learning at the College.'
-      ]
-    },
-    {
-      /* Ordinal and dates are not in the profile. Placed after AVM Tuwase
-         as the most recent; to be confirmed. */
-      id: 'eo-alade', no: null, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'EO Alade', serviceNo: '',
+      id: 'eo-alade', no: 24, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'EO Alade', serviceNo: '',
       post: 'GSS psc fdc(+) MSc CPL mnim pfd', fullName: 'Ebenezer Olayinka Alade',
-      from: null, to: null, photo: 'assets/commandants/avm-eo-alade.jpg',
+      from: '2021-03-09', to: '2022-01-07', photo: 'assets/commandants/24-eo-alade.jpg',
       facts: [
         { label: 'Born', value: '5 February 1965, Lagos' },
         { label: 'Cadet course', value: '34 Regular Course, NDA' },
@@ -503,17 +482,47 @@ var HOF_CONTENT = {
         'AVM Alade has held several appointments in the NAF, prominent among which are: Deputy Director Air Safety HQ NAF. He was also the Chief Military Personnel Officer, United Nations Mission for the Referendum in Western Sahara HQ, Layounne, Western Sahara between Mar - Nov 04. He was a Directing Staff and Director, Department of National and Military Strategy, NDC between Nov 12 and Oct 14. From Oct 14 – May 15 AVM Alade was the Deputy Director Policy HQ NAF and later appointed Director of NAF Transformation. He was also Commander, NAF Base Enugu and later NAF Base Makurdi. He was thereafter redeployed to HQ NAF as the Director of NAF Transformation again. AVM Alade’s last appointment before being appointed Comdt AFCSC Jaji was Director of Plans HQ NAF. AVM Alade has over 1000 flying hours both as a navigator and a pilot.',
         'AVM Alade has won many awards in the course of his various trainings amongst which are: Best graduating Air Force cadet as well as Silver medalist on graduation from Nigerian Defence Academy in 1987. He won the Chief of the Air Force Award for best Service paper at the National Defence College where he later became a Distinguished Alumnus. The Air Vice Marshal is decorated with the following medals; Grand Service Star (GSS), Distinguished Service Star (DSS), Meritorious Service Star (MSS) and Forster Service Star (FSS). He holds a Professional Fellowship Doctorate of the Institute of Economics where he is fellow. AVM Alade is happily married and the union is blessed with children. His hobbies include listening to jazz music, travelling and playing golf.'
       ]
+    },
+    {
+      id: 'oa-tuwase', no: 25, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'OA Tuwase', serviceNo: '',
+      post: 'GSS GSM psc(+) fawc(Pak) MSc ATO', fullName: 'Oluroti Anthony Tuwase',
+      from: '2022-01-07', to: '2023-01-06', photo: 'assets/commandants/25-oa-tuwase.jpg',
+      facts: [
+        { label: 'Born', value: '1 December 1965, Onitsha' },
+        { label: 'Hometown', value: 'Kabba/Bunu LGA, Kogi State' },
+        { label: 'Commissioned', value: 'September 1990 · 37 Regular Course' }
+      ],
+      bio: [
+        'Air Vice Marshal Oluroti Anthony Tuwase was born on 1 Dec 1965 at Onitsha. He hails from Kabba/Bunnu Local Government Area of Kogi State. He was admitted into the Nigerian Defence Academy in 1985 as a member of 37 Regular Combatant course. He was Commissioned in September 1990 as a Pilot Officer in the Nigerian Air Force (NAF). He attended several training courses amongst which include Orientation Engineering Course at the then Technical Training Group now Air Force Institute of Technology. He was type-rated Alpha Jet Engine in 1992 at Air Weapon School at New-Bussa.',
+        'The Senior officer also attended the Junior and Senior Staff Course at this prestigious Armed Forces Command and Staff College Jaji. The Senior officer returned to the College as a Directing Staff. AVM OA Tuwase has held several Command, Staff and Instructional appointments, prominent amongst which are; Officer Commanding Armament Squadron, Nigerian Air Force Detachment ECOMOG in Liberia and Sierra Leone, Command Armament Officer HQ Logistics Command Ikeja and Deputy Director Ground Safety HQ NAF. He was also the Commander of the 405 Central Armament Depot and Director of Armament HQ NAF. Air Vice Marshal OA Tuwase was the Director of Procurement Logistic Branch HQ NAF before being appointed as the Twenty Fifth Commandant of the Armed Forces Command and Staff College.',
+        'Air Vice Marshal OA Tuwase is highly recognized and honoured for his exemplary leadership, professionalism and great inputs to ensure conducive environment for improved learning at the College.'
+      ]
+    },
+    {
+      /* From the portrait on the Hall of Fame wall; no biography supplied yet. */
+      id: 'ea-wonah', no: 26, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'EA Wonah', serviceNo: '',
+      post: 'GSS FCM CMH psc(+) fdc(+) MSc MEng MNIM FISPON', fullName: '',
+      from: '2023-01-05', to: '2023-07-03', photo: 'assets/commandants/26-ea-wonah.jpg',
+      facts: [], bio: []
+    },
+    {
+      /* From the portrait on the Hall of Fame wall; no biography supplied yet.
+         Also Director Air Warfare 2018–2020 (as Air Cdre HI Alhaji). */
+      id: 'hi-alhaji', no: 27, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'HI Alhaji', serviceNo: '',
+      post: 'GSS DTM CMH psc(+) fndu nswc BEng MTech MSc', fullName: '',
+      from: '2023-07-03', to: '2026-01-07', photo: 'assets/commandants/27-hi-alhaji.jpg', director: 'HI Alhaji',
+      facts: [], bio: []
     }
   ],
 
   /* The five medallions on the home screen's Commandants panel
      (the third sits in the middle, ringed in gold). */
   homeCommandantPhotos: [
-    'assets/commandants/unidentified/photo-02.png',
-    'assets/commandants/avm-oa-tuwase.jpg',
-    'assets/commandants/avm-eo-alade.jpg',
-    'assets/commandants/unidentified/photo-13.png',
-    'assets/commandants/unidentified/photo-07.png'
+    'assets/commandants/02-jo-bajowa.jpg',
+    'assets/commandants/16-sa-leks.jpg',
+    'assets/commandants/27-hi-alhaji.jpg',
+    'assets/commandants/23-as-liman.jpg',
+    'assets/commandants/09-jn-dogonyaro.jpg'
   ],
 
   services: {

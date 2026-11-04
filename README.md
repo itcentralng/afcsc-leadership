@@ -52,19 +52,9 @@ Everything lives in `data/content.js`:
   `army`, `airforce` or `navy`, `bio` is the biography's paragraphs and
   `facts` the short facts shown above it. Dates are `YYYY-MM-DD`; use `null`
   for a date not known yet, and it shows as "To be confirmed".
-- `photo: null` shows a monogram until the portrait is matched.
-
-### Matching the unnamed commandant photos
-
-The unnamed photos supplied are saved, one per person (duplicates removed),
-as `assets/commandants/unidentified/photo-01.png` … `photo-13.png`, and
-`Leaders/Commandants/photo-key.jpg` shows them side by side with their
-numbers. To attach one, set that commandant's `photo` in `data/content.js`,
-for example:
-
-```js
-photo: 'assets/commandants/unidentified/photo-06.png'
-```
+- Commandants' tenure dates follow the captions on their portraits on the
+  Hall of Fame wall. `photo: null` shows the officer's initials instead of a
+  portrait, and `bio: []` shows "Biography to follow".
 
 ## Portraits
 
@@ -72,8 +62,11 @@ photo: 'assets/commandants/unidentified/photo-06.png'
 
 - `assets/directors/`: each page of the directors' PDF, cropped to the
   drawing (the printed caption is removed, as the app typesets it), in greyscale.
-- `assets/commandants/`: the two framed official portraits, cropped inside
-  their frames, and the cut-out photos in `unidentified/`.
+- `assets/commandants/`: the commandants' pencil portraits on the Hall of
+  Fame wall, from the photographs in `Leaders/Commandants/wall-portraits/`:
+  straightened, cropped to the drawing (caption removed) and in greyscale.
+  For a new portrait, save a straight-on JPEG about 900px wide here as
+  `NN-initials-surname.jpg` and point the commandant's `photo` at it.
 
 ## Crests
 

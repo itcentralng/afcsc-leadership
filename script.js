@@ -210,9 +210,11 @@
       var d = DIRECTORS[Math.round(k * (DIRECTORS.length - 1) / (OUTER - 1))];
       addBlip(d.photo, 340, k * 360 / OUTER + 8, false);
     }
-    var inner = COMMANDANTS.filter(function (c) { return c.photo && !/\.png$/i.test(c.photo); }).map(function (c) { return c.photo; });
-    var extra = (C.homeCommandantPhotos || []).filter(function (p) { return inner.indexOf(p) < 0; });
-    inner = inner.concat(extra).slice(0, 8);
+    var withPhoto = COMMANDANTS.filter(function (c) { return c.photo; });
+    var inner = [];
+    for (var m = 0; m < Math.min(8, withPhoto.length); m++) {
+      inner.push(withPhoto[Math.round(m * (withPhoto.length - 1) / 7)].photo);
+    }
     inner.forEach(function (src, n) { addBlip(src, 215, n * 360 / inner.length + 30, true); });
 
     // Instrument readouts
@@ -418,6 +420,8 @@
     (c.bio || []).forEach(function (p) {
       el.bioPanel.appendChild(make('p', 'bio-text' + (/highly recogni[sz]ed/i.test(p) ? ' bio-text--closing' : ''), p));
     });
+    el.bioPanel.classList.toggle('bio-empty', !(c.bio && c.bio.length));
+    if (!(c.bio && c.bio.length)) el.bioPanel.appendChild(make('p', null, t('bioPending')));
     el.bioPanel.scrollTop = 0;
 
     el.bioLinks.innerHTML = '';
