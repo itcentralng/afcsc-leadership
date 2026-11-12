@@ -79,7 +79,7 @@ supplied: trimmed, enlarged for the big screen, and with their edges
 smoothed. They appear on the welcome screen, the top bar, the home screen and
 as section badges (AFCSC on Commandants, Air Force on Directors), and the
 AFCSC crest sits behind the initials of commandants still awaiting a
-portrait. `app.ico` is built from the AFCSC crest. A larger original of the
+portrait. `app.ico` (browser tab, taskbar and desktop shortcut) is built from the Nigerian Air Force crest, at 16–256px. A larger original of the
 AFCSC crest would make it sharper still; replace both PNGs the same way.
 
 ## Background music
