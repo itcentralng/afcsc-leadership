@@ -67,9 +67,9 @@ var HOF_CONTENT = {
 
   /* ----------------------------------------------------------
      DIRECTORS — oldest first.
-     Source: the caption printed on each portrait in
-     Leaders/Directors/CamScanner 03-11-2026 12.56.pdf (one per page).
-     fullName and bio: Leaders/Directors/BRIEF BIOGRAPHIES OF PAST D DAWS.pptx
+     Source: the caption printed on each portrait in the scanned PDF of
+     directors' portraits ("CamScanner 03-11-2026 12.56.pdf", one per page).
+     fullName and bio: "BRIEF BIOGRAPHIES OF PAST D DAWS.pptx"
      (one slide each, in the deck's own words; fullName is the rank and name
      as the deck gives them).
      ---------------------------------------------------------- */
@@ -353,12 +353,11 @@ var HOF_CONTENT = {
   ],
 
   /* ----------------------------------------------------------
-     COMMANDANTS — in order of appointment. "no" is the ordinal the
-     biography gives (the 24th is not in the documents yet).
-     Sources: Leaders/Commandants/profile of Comdts for DLW Hallof Fame.docx,
+     COMMANDANTS — in order of appointment. "no" is the ordinal.
+     Sources: "profile of Comdts for DLW Hallof Fame.docx",
      "Air Vice Marshal Oluroti Anthony Tuwase.docx" and "Profile AVM EO Alade.doc".
      Tenure dates are those on the commandants' portraits on the Hall of
-     Fame wall (photographed: Leaders/Commandants/wall-portraits/), which
+     Fame wall, which
      differ in places from the dates in the documents.
      The wording is the documents' own, except that their closing line
      ("...improved learning in the Army Faculty / Department of Land

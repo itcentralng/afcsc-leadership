@@ -51,7 +51,7 @@ Everything lives in `data/content.js`:
 - `directors`: oldest first, from the captions on the portraits. `era` is
   `faculty` or `warfare`. Add `current: true` to the serving director.
   `fullName` and `bio` (the biography's paragraphs) come from
-  `Leaders/Directors/BRIEF BIOGRAPHIES OF PAST D DAWS.pptx`; a director with
+  the deck "BRIEF BIOGRAPHIES OF PAST D DAWS.pptx"; a director with
   a `bio` gets a "Read biography" button.
 - `commandants`: in order of appointment. `no` is the ordinal, `service` is
   `army`, `airforce` or `navy`, `bio` is the biography's paragraphs and
@@ -63,21 +63,19 @@ Everything lives in `data/content.js`:
 
 ## Portraits
 
-`Leaders/` holds the material as supplied. The app uses:
+- `assets/directors/`: the directors' portraits, in greyscale with the
+  printed caption removed (the app typesets names and dates itself).
+- `assets/commandants/`: the commandants' pencil portraits from the Hall of
+  Fame wall, cropped to the drawing (caption removed), in greyscale.
 
-- `assets/directors/`: each page of the directors' PDF, cropped to the
-  drawing (the printed caption is removed, as the app typesets it), in greyscale.
-- `assets/commandants/`: the commandants' pencil portraits on the Hall of
-  Fame wall, from the photographs in `Leaders/Commandants/wall-portraits/`:
-  straightened, cropped to the drawing (caption removed) and in greyscale.
-  For a new portrait, save a straight-on JPEG about 900px wide here as
-  `NN-initials-surname.jpg` and point the commandant's `photo` at it.
+For a new portrait, save a straight-on JPEG about 900–1100px wide in the
+right folder as `NN-initials-surname.jpg` and point the entry's `photo` at it.
 
 ## Crests
 
 `assets/icons/afcsc.png` (Armed Forces Command and Staff College) and
-`assets/icons/naf.png` (Nigerian Air Force) are prepared from the files in
-`Leaders/Logos/`: trimmed, enlarged for the big screen, and with their edges
+`assets/icons/naf.png` (Nigerian Air Force) are prepared from the crests
+supplied: trimmed, enlarged for the big screen, and with their edges
 smoothed. They appear on the welcome screen, the top bar, the home screen and
 as section badges (AFCSC on Commandants, Air Force on Directors), and the
 AFCSC crest sits behind the initials of commandants still awaiting a
@@ -101,6 +99,5 @@ assets/directors/     director portraits used by the app
 assets/commandants/   commandant portraits and unnamed cut-outs
 assets/fonts/         bundled Oswald, Playfair Display, Crimson Text
 assets/icons/         AFCSC and Air Force crests, app icon
-Leaders/              original PDF, Word documents, photos and crests
 run.bat, prepare.bat  kiosk launchers
 ```
