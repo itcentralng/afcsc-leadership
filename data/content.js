@@ -34,7 +34,7 @@ var HOF_CONTENT = {
     of: 'of',
     current: 'Serving',
     present: 'Present',
-    tbc: 'To be confirmed',
+    tbc: '-',
     tenure: 'Tenure',
     duration: 'Duration',
     appointment: 'Appointment',

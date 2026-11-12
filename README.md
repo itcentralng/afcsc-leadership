@@ -56,7 +56,7 @@ Everything lives in `data/content.js`:
 - `commandants`: in order of appointment. `no` is the ordinal, `service` is
   `army`, `airforce` or `navy`, `bio` is the biography's paragraphs and
   `facts` the short facts shown above it. Dates are `YYYY-MM-DD`; use `null`
-  for a date not known yet, and it shows as "To be confirmed".
+  for a date not known yet, and it shows as "-".
 - Commandants' tenure dates follow the captions on their portraits on the
   Hall of Fame wall. `photo: null` shows the officer's initials instead of a
   portrait, and `bio: []` shows "Biography to follow".
