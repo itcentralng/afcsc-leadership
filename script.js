@@ -24,7 +24,7 @@
   var COMMANDANTS = C.commandants;
   var CUR_DIR = indexWhere(DIRECTORS, function (d) { return d.current; });
 
-  var state = { screen: 'attract', spot: 0, bioIndex: null, cmdFilter: 'all' };
+  var state = { screen: 'attract', spot: 0, bioIndex: null, bioKind: 'commandant', cmdFilter: 'all' };
   var el = {};
   var idleTimer = null;
 
@@ -171,11 +171,16 @@
     if (ambient && !ambient.paused) fadeAmbient(ambientTarget());
     Object.keys(el.screens).forEach(function (k) { el.screens[k].classList.toggle('active', k === id); });
     el.topbar.classList.toggle('hidden', id === 'attract');
-    var section = id === 'bio' ? 'commandants' : id;
-    el.topbarNav.querySelectorAll('[data-nav]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-nav') === section); });
+    syncTopbar();
     if (id === 'commandants') cmdTrack.enter();
     if (id === 'directors') enterDirectors();
     resetIdleTimer();
+  }
+
+  // Highlights the top-bar link for the section on screen.
+  function syncTopbar() {
+    var section = state.screen === 'bio' ? (state.bioKind === 'director' ? 'directors' : 'commandants') : state.screen;
+    el.topbarNav.querySelectorAll('[data-nav]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-nav') === section); });
   }
 
   /* ---------------- welcome ---------------- */
@@ -378,75 +383,131 @@
   }
 
   /* ---------------- commandant biography ---------------- */
+  /* ---------------- biography page (commandants and directors) ---------------- */
+  // One page serves both rolls; state.bioKind says which, and prev/next
+  // step through that roll's entries that have a biography.
   function bioOrder() {
+    if (state.bioKind === 'director') {
+      return DIRECTORS.map(function (_, i) { return i; }).filter(function (i) { return DIRECTORS[i].bio && DIRECTORS[i].bio.length; });
+    }
     return COMMANDANTS.map(function (_, i) { return i; }).filter(function (i) { return !COMMANDANTS[i].pending; });
   }
 
-  function openBio(i, direction) {
-    var c = COMMANDANTS[i];
-    if (!c || c.pending) return;
-    state.bioIndex = i;
+  function linkChip(visual, label, name, onClick) {
+    var b = make('button', 'chip-btn chip-btn--gold');
+    b.appendChild(chipContent(visual, label, name));
+    b.addEventListener('click', onClick);
+    return b;
+  }
 
+  // vm: the page's content, whichever roll it comes from
+  function fillBio(vm, i, direction) {
+    state.bioIndex = i;
+    el.bioBackLabel.textContent = vm.backLabel;
     el.bioFrame.innerHTML = '';
-    el.bioFrame.appendChild(commandantImg(c));
-    if (!c.photo) el.bioFrame.appendChild(make('span', 'bio-frame-note', t('portraitPending')));
+    el.bioFrame.appendChild(vm.visual);
+    if (vm.portraitPending) el.bioFrame.appendChild(make('span', 'bio-frame-note', t('portraitPending')));
 
     el.bioOrdinal.innerHTML = '';
-    if (c.no) el.bioOrdinal.appendChild(make('b', null, ordinal(c.no)));
-    el.bioOrdinal.appendChild(make('span', null, t('commandant')));
+    if (vm.no) el.bioOrdinal.appendChild(make('b', null, ordinal(vm.no)));
+    el.bioOrdinal.appendChild(make('span', null, vm.ordinalLabel));
 
-    el.bioService.textContent = c.service ? C.services[c.service] : '';
-    el.bioService.className = 'tag' + (c.service === 'army' ? ' tag--army' : '');
-    el.bioRank.textContent = c.rank;
-    el.bioName.textContent = c.name;
-    el.bioPost.textContent = c.post || '';
-    el.bioFullname.textContent = c.fullName || '';
+    el.bioService.textContent = vm.tag || '';
+    el.bioService.className = 'tag' + (vm.tagClass ? ' ' + vm.tagClass : '');
+    el.bioRank.textContent = vm.rank;
+    el.bioName.textContent = vm.name;
+    el.bioPost.textContent = vm.post || '';
+    el.bioFullname.textContent = vm.fullName || '';
 
     el.bioFacts.innerHTML = '';
-    var facts = [{ label: t('tenure'), value: tenureLong(c) }];
-    if (c.from) facts.push({ label: t('duration'), value: durationOf(c) });
-    if (c.serviceNo) facts.push({ label: t('serviceNo'), value: c.serviceNo });
-    facts = facts.concat((c.facts || []).filter(function (f) { return f.label !== 'Flying hours'; }).slice(0, 5 - facts.length));
-    facts.forEach(function (f) {
+    vm.facts.forEach(function (f) {
       var d = make('div');
       d.appendChild(make('dt', null, f.label));
       d.appendChild(make('dd', null, f.value));
       el.bioFacts.appendChild(d);
     });
 
+    var bio = vm.bio || [];
     el.bioPanel.innerHTML = '';
-    var words = (c.bio || []).join(' ').split(/\s+/).length;
-    el.bioPanel.classList.toggle('is-long', words > 330);
-    (c.bio || []).forEach(function (p) {
+    el.bioPanel.classList.toggle('is-long', bio.join(' ').split(/\s+/).length > 330);
+    bio.forEach(function (p) {
       el.bioPanel.appendChild(make('p', 'bio-text' + (/highly recogni[sz]ed/i.test(p) ? ' bio-text--closing' : ''), p));
     });
-    el.bioPanel.classList.toggle('bio-empty', !(c.bio && c.bio.length));
-    if (!(c.bio && c.bio.length)) el.bioPanel.appendChild(make('p', null, t('bioPending')));
+    el.bioPanel.classList.toggle('bio-empty', !bio.length);
+    if (!bio.length) el.bioPanel.appendChild(make('p', null, t('bioPending')));
     el.bioPanel.scrollTop = 0;
 
     el.bioLinks.innerHTML = '';
-    if (c.director) {
-      var di = indexWhere(DIRECTORS, function (d) { return d.name === c.director; });
-      if (di >= 0) {
-        var b = make('button', 'chip-btn chip-btn--gold');
-        b.appendChild(chipContent(DIRECTORS[di].photo, t('alsoDirector') + ' · ' + tenureYears(DIRECTORS[di]), shortName(DIRECTORS[di])));
-        b.addEventListener('click', function () { showDirector(di); });
-        el.bioLinks.appendChild(b);
-      }
-    }
+    (vm.links || []).forEach(function (b) { el.bioLinks.appendChild(b); });
 
     var order = bioOrder(), k = order.indexOf(i);
     el.bioPrev.disabled = k <= 0;
     el.bioNext.disabled = k >= order.length - 1;
 
     if (state.screen !== 'bio') showScreen('bio');
+    else syncTopbar();
+    // two columns while the text fits; otherwise one column that scrolls
+    if (el.bioPanel.scrollWidth > el.bioPanel.clientWidth + 2) el.bioPanel.classList.add('is-long');
     restartAnimation(el.bioWrap, direction ? (direction < 0 ? 'enter-prev' : 'enter-next') : null);
     resetIdleTimer();
   }
 
+  function openBio(i, direction) {
+    var c = COMMANDANTS[i];
+    if (!c || c.pending) return;
+    state.bioKind = 'commandant';
+    var facts = [{ label: t('tenure'), value: tenureLong(c) }];
+    if (c.from) facts.push({ label: t('duration'), value: durationOf(c) });
+    if (c.serviceNo) facts.push({ label: t('serviceNo'), value: c.serviceNo });
+    facts = facts.concat((c.facts || []).filter(function (f) { return f.label !== 'Flying hours'; }).slice(0, 5 - facts.length));
+    var links = [];
+    if (c.director) {
+      var di = indexWhere(DIRECTORS, function (d) { return d.name === c.director; });
+      if (di >= 0) links.push(linkChip(DIRECTORS[di].photo, t('alsoDirector') + ' · ' + tenureYears(DIRECTORS[di]), shortName(DIRECTORS[di]), function () { openDirectorBio(di); }));
+    }
+    fillBio({
+      backLabel: t('commandantsTitle'), visual: commandantImg(c), portraitPending: !c.photo,
+      no: c.no, ordinalLabel: t('commandant'),
+      tag: c.service ? C.services[c.service] : '', tagClass: c.service === 'army' ? 'tag--army' : '',
+      rank: c.rank, name: c.name, post: c.post, fullName: c.fullName,
+      facts: facts, bio: c.bio, links: links
+    }, i, direction);
+  }
+
+  function openDirectorBio(i, direction) {
+    var d = DIRECTORS[i];
+    if (!d || !(d.bio && d.bio.length)) return;
+    state.bioKind = 'director';
+    state.spot = i; // the spotlight shows this director on the way back
+    var facts = [{ label: t('appointment'), value: appointmentTitle(d) }, { label: t('tenure'), value: tenureLong(d) }];
+    if (d.from) facts.push({ label: t('duration'), value: durationOf(d) });
+    var links = [];
+    if (d.commandant) {
+      var ci = indexWhere(COMMANDANTS, function (c) { return c.id === d.commandant; });
+      if (ci >= 0) {
+        var c = COMMANDANTS[ci];
+        links.push(linkChip(commandantImg(c), t('alsoCommandant') + ' · ' + tenureYears(c), shortName(c), function () { openBio(ci); }));
+      }
+    }
+    fillBio({
+      backLabel: t('directorsTitle'), visual: img(d.photo, fullName(d), 'is-sketch'),
+      no: i + 1, ordinalLabel: t('director'),
+      tag: i === CUR_DIR ? t('current') : appointmentTitle(d),
+      tagClass: i === CUR_DIR ? 'tag--current' : (d.era === 'warfare' ? 'tag--gold' : ''),
+      rank: d.rank, name: d.name, post: d.post, fullName: d.fullName,
+      facts: facts, bio: d.bio, links: links
+    }, i, direction);
+  }
+
   function stepBio(dir) {
     var order = bioOrder(), k = order.indexOf(state.bioIndex) + dir;
-    if (k >= 0 && k < order.length) openBio(order[k], dir);
+    if (k < 0 || k >= order.length) return;
+    if (state.bioKind === 'director') openDirectorBio(order[k], dir);
+    else openBio(order[k], dir);
+  }
+
+  function closeBio() {
+    showScreen(state.bioKind === 'director' ? 'directors' : 'commandants');
   }
 
   /* ---------------- directors: spotlight + honour wall ---------------- */
@@ -494,6 +555,7 @@
       el.honourWall.appendChild(box);
     });
 
+    el.spotBio.addEventListener('click', function () { openDirectorBio(state.spot); });
     el.spotPrev.addEventListener('click', function () { showDirector(state.spot - 1, -1); });
     el.spotNext.addEventListener('click', function () { showDirector(state.spot + 1, 1); });
     addSwipe(el.spotCard, function (dir) { showDirector(state.spot + dir, dir); });
@@ -514,9 +576,8 @@
     el.spotTenure.textContent = tenureLong(d);
     el.spotDuration.textContent = durationOf(d);
 
+    // the wall and the arrows show the succession; only the cross-link sits here
     el.spotSuccession.innerHTML = '';
-    if (i > 0) el.spotSuccession.appendChild(successionChip(i - 1, t('precededBy'), -1));
-    if (i < DIRECTORS.length - 1) el.spotSuccession.appendChild(successionChip(i + 1, t('succeededBy'), 1));
     if (d.commandant) {
       var ci = indexWhere(COMMANDANTS, function (c) { return c.id === d.commandant; });
       if (ci >= 0) {
@@ -527,6 +588,8 @@
         el.spotSuccession.appendChild(b);
       }
     }
+
+    el.spotBio.classList.toggle('hidden', !(d.bio && d.bio.length));
 
     el.spotCount.innerHTML = '';
     el.spotCount.appendChild(document.createTextNode(t('director') + ' '));
@@ -584,13 +647,6 @@
     return frag;
   }
 
-  function successionChip(i, label, dir) {
-    var b = make('button', 'chip-btn');
-    b.appendChild(chipContent(DIRECTORS[i].photo, label, shortName(DIRECTORS[i])));
-    b.addEventListener('click', function () { showDirector(i, dir); });
-    return b;
-  }
-
   /* ---------------- swipe ---------------- */
   function addSwipe(node, onSwipe) {
     var x0 = null, y0 = null;
@@ -634,7 +690,7 @@
     el.spotTag = $('spot-tag'); el.spotRank = $('spot-rank'); el.spotName = $('spot-name'); el.spotPost = $('spot-post');
     el.spotTenure = $('spot-tenure'); el.spotDuration = $('spot-duration'); el.spotSuccession = $('spot-succession');
     el.spotCount = $('spot-count'); el.spotPrev = $('spot-prev'); el.spotNext = $('spot-next');
-    el.bioWrap = $('bio-wrap'); el.bioFrame = $('bio-frame'); el.bioOrdinal = $('bio-ordinal');
+    el.bioWrap = $('bio-wrap'); el.bioBackLabel = $('bio-back-label'); el.spotBio = $('spot-bio'); el.bioFrame = $('bio-frame'); el.bioOrdinal = $('bio-ordinal');
     el.bioService = $('bio-service'); el.bioRank = $('bio-rank'); el.bioName = $('bio-name');
     el.bioPost = $('bio-post'); el.bioFullname = $('bio-fullname'); el.bioFacts = $('bio-facts');
     el.bioPanel = $('bio-panel'); el.bioLinks = $('bio-links'); el.bioPrev = $('bio-prev'); el.bioNext = $('bio-next');
@@ -655,7 +711,7 @@
       b.addEventListener('click', function () { showScreen(b.getAttribute('data-nav')); });
     });
 
-    $('bio-back').addEventListener('click', function () { showScreen('commandants'); });
+    $('bio-back').addEventListener('click', closeBio);
     el.bioPrev.addEventListener('click', function () { stepBio(-1); });
     el.bioNext.addEventListener('click', function () { stepBio(1); });
     addSwipe(el.bioFrame, stepBio);
@@ -667,7 +723,7 @@
       } else if (state.screen === 'bio') {
         if (e.key === 'ArrowLeft') stepBio(-1);
         if (e.key === 'ArrowRight') stepBio(1);
-        if (e.key === 'Escape') showScreen('commandants');
+        if (e.key === 'Escape') closeBio();
       }
     });
 

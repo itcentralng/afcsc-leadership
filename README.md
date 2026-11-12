@@ -27,7 +27,9 @@ and scaled to fit any screen.
   progress bar under the portrait. The honour wall beside it shows all 35
   portraits grouped as Director Air Faculty and Director Air Warfare; tap one
   to bring it into the spotlight. A touch holds the spotlight for 15 seconds
-  before it carries on. Timings are at the top of the directors section of
+  before it carries on. "Read biography" opens the director's full
+  biography page (full name, appointment, tenure and the biography text,
+  with previous/next through the roll). Timings are at the top of the directors section of
   `script.js`.
 - Officers who held both offices (AVM SA Leks, AVM AS Liman) link between
   their director spotlight and their commandant biography.
@@ -48,6 +50,9 @@ Everything lives in `data/content.js`:
 
 - `directors`: oldest first, from the captions on the portraits. `era` is
   `faculty` or `warfare`. Add `current: true` to the serving director.
+  `fullName` and `bio` (the biography's paragraphs) come from
+  `Leaders/Directors/BRIEF BIOGRAPHIES OF PAST D DAWS.pptx`; a director with
+  a `bio` gets a "Read biography" button.
 - `commandants`: in order of appointment. `no` is the ordinal, `service` is
   `army`, `airforce` or `navy`, `bio` is the biography's paragraphs and
   `facts` the short facts shown above it. Dates are `YYYY-MM-DD`; use `null`

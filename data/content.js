@@ -69,45 +69,287 @@ var HOF_CONTENT = {
      DIRECTORS — oldest first.
      Source: the caption printed on each portrait in
      Leaders/Directors/CamScanner 03-11-2026 12.56.pdf (one per page).
+     fullName and bio: Leaders/Directors/BRIEF BIOGRAPHIES OF PAST D DAWS.pptx
+     (one slide each, in the deck's own words; fullName is the rank and name
+     as the deck gives them).
      ---------------------------------------------------------- */
   directors: [
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'U Mu’azu', post: 'FSS psc', era: 'faculty', from: '1978-04-03', to: '1979-09-25', photo: 'assets/directors/01-gp-capt-u-muazu.jpg' },
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'GO Esho', post: 'FSS psc', era: 'faculty', from: '1979-09-24', to: '1981-01-05', photo: 'assets/directors/02-gp-capt-go-esho.jpg' },
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'CU Ugah', post: 'FSS psc', era: 'faculty', from: '1981-02-08', to: '1982-02-08', photo: 'assets/directors/03-gp-capt-cu-ugah.jpg' },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'U Mu’azu', post: 'FSS psc', era: 'faculty', from: '1978-04-03', to: '1979-09-25', photo: 'assets/directors/01-gp-capt-u-muazu.jpg',
+      fullName: "Air Vice-Marshal Usman Mu’azu",
+      bio: [
+        "Air Vice-Marshal Usman Mu’azu (1942–2008) was a distinguished senior Nigerian Air Force officer and military administrator. Born in Kwoi, Kaduna State, he studied at Provincial Secondary School, Zaria, Ahmadu Bello University, and the Nigerian Defence Academy, completing advanced professional training in West Germany and the United States.",
+        "Throughout his career, Mu'azu held prominent positions, including roles at the Command and Staff College, Jaji, where he served as Director of the Department of Air Warfare, as well as leading the Command Training College in Kaduna, Nigerian Airways, and serving as Air Officer Commanding, Nigerian Air Force Training Command.",
+        "Following the December 1983 military coup, he served as the Military Governor of Kaduna State from January 1984 until August 1985, prior to the regime change that brought General Ibrahim Babangida to power. He subsequently returned to active service in the Nigerian Air Force until his retirement, leaving behind a lasting legacy in Nigeria's military and political history before his passing in 2008."
+      ]
+    },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'GO Esho', post: 'FSS psc', era: 'faculty', from: '1979-09-24', to: '1981-01-05', photo: 'assets/directors/02-gp-capt-go-esho.jpg',
+      fullName: "Air Vice-Marshal George Ayo Osho",
+      bio: [
+        "Air Vice Marshal George Ayo Osho was born on 4 December 1939 in Mopa, Kogi State. He joined the NAF as a pioneer officer cadet in 1963 after training in West Germany. He passed away on 13 October 2018 at the age of 78.",
+        "Air Vice Marshal GA Osho served as the Director of the Air Faculty, AFCSC, Jaji, during the late 1970s / early 1980s, where he adapted post-Civil War tactical frameworks into advanced joint-services training.",
+        "The very senior officer was recognized as one of Nigeria’s first 2 presidential pilots on the Executive Fleet and the first NAF pilot to record 6,000 flying hours. He was also the first NAF officer to graduate from the Defence Services Staff College in Wellington, India.",
+        "He served as the Air Officer Commanding, Tactical Air Command Makurdi, and held an extensive tenure as Air Officer Operations, HQ NAF (1983–1989). He also briefly served as the Acting Military Governor of Lagos State for 6 months in 1977."
+      ]
+    },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'CU Ugah', post: 'FSS psc', era: 'faculty', from: '1981-02-08', to: '1982-02-08', photo: 'assets/directors/03-gp-capt-cu-ugah.jpg',
+      fullName: "Air Vice Marshal CU Ugah",
+      bio: [
+        "Air Vice Marshal CU Ugah served as Director Department of Air Warfare, Armed Forces Command and Staff College (AFCSC), Jaji. He also served as Air Officer Commanding, Tactical Air Command, Makurdi from 10 January 1989 to 29 December 1989, under the military administration of General Ibrahim Babangida."
+      ]
+    },
     /* The portrait reads "8 Feb 81 - 1 Dec 82"; 81 looks like a slip for 82,
        as Gp Capt Ugah held the post until 8 Feb 82. To be confirmed. */
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'S Magaji', post: 'FSS psc', era: 'faculty', from: '1982-02-08', to: '1982-12-01', photo: 'assets/directors/04-gp-capt-s-magaji.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AH Lawal', post: 'FSS psc mni', era: 'faculty', from: '1982-12-01', to: '1984-01-20', photo: 'assets/directors/05-air-cdre-ah-lawal.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AE Okpere', post: 'FSS psc mni', era: 'faculty', from: '1984-01-20', to: '1986-03-01', photo: 'assets/directors/06-air-cdre-ae-okpere.jpg' },
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'A Okpanachi', post: 'FSS psc mni', era: 'faculty', from: '1986-03-01', to: '1988-01-30', photo: 'assets/directors/07-gp-capt-a-okpanachi.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'MM Aliyu', post: 'FSS psc mni', era: 'faculty', from: '1988-07-10', to: '1989-02-21', photo: 'assets/directors/08-air-cdre-mm-aliyu.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Mbaka', post: 'FSS psc mni', era: 'faculty', from: '1989-02-23', to: '1990-09-10', photo: 'assets/directors/09-air-cdre-ja-mbaka.jpg' },
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'MA Johnson', post: 'FSS psc mni', era: 'faculty', from: '1990-09-10', to: '1991-03-10', photo: 'assets/directors/10-gp-capt-ma-johnson.jpg' },
-    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'VO Omozokpia', post: 'FSS psc mni', era: 'faculty', from: '1991-03-11', to: '1991-12-03', photo: 'assets/directors/11-gp-capt-vo-omozokpia.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JO Sunmonu', post: 'FSS DSO psc mni', era: 'faculty', from: '1991-12-04', to: '1993-10-07', photo: 'assets/directors/12-air-cdre-jo-sunmonu.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'VC Akiti', post: 'FSS DSO psc(+)', era: 'faculty', from: '1993-10-08', to: '1994-09-26', photo: 'assets/directors/13-air-cdre-vc-akiti.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Akawo', post: 'FSS psc(+) fwc', era: 'faculty', from: '1994-09-26', to: '1997-08-18', photo: 'assets/directors/14-air-cdre-ja-akawo.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'I Abdulrahman', post: 'FSS MSS DSS psc(+)', era: 'faculty', from: '1997-08-18', to: '1998-12-18', photo: 'assets/directors/15-air-cdre-i-abdulrahman.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'EU Okundaye', post: 'DSS psc(+) ndc', era: 'faculty', from: '1999-02-18', to: '1999-07-28', photo: 'assets/directors/16-air-cdre-eu-okundaye.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Kolawole', post: 'FSS MSS DSS psc fwc (MSc)', era: 'faculty', from: '1999-07-28', to: '2001-05-15', photo: 'assets/directors/17-air-cdre-ja-kolawole.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'KR Ekezie', post: 'DSS psc(+) ndc', era: 'faculty', from: '2001-07-26', to: '2003-01-10', photo: 'assets/directors/18-air-cdre-kr-ekezie.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'TM Ato', post: 'DSS psc(+) MSc', era: 'faculty', from: '2003-01-10', to: '2004-02-17', photo: 'assets/directors/19-air-cdre-tm-ato.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'I Danbauchi', post: 'DSS psc(+) fwc LLB MSc', era: 'warfare', from: '2004-02-17', to: '2006-09-08', photo: 'assets/directors/20-air-cdre-i-danbauchi.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Udo', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2006-09-08', to: '2007-01-09', photo: 'assets/directors/21-air-cdre-ja-udo.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SA Leks', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2007-01-08', to: '2007-08-08', photo: 'assets/directors/22-air-cdre-sa-leks.jpg', commandant: 'sa-leks' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'MY Oladunni', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2007-08-08', to: '2010-01-29', photo: 'assets/directors/23-air-cdre-my-oladunni.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'GO Ekagbo', post: 'DSS psc(+) fndu (PRC)', era: 'warfare', from: '2010-01-30', to: '2012-12-06', photo: 'assets/directors/24-air-cdre-go-ekagbo.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SG Jeff-Zanni', post: 'DSS psc(+) ndc MSc', era: 'warfare', from: '2012-12-17', to: '2014-10-12', photo: 'assets/directors/25-air-cdre-sg-jeff-zanni.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'NO Oyibo', post: 'DSS psc(+) fdc(+) MSc', era: 'warfare', from: '2014-10-13', to: '2015-02-08', photo: 'assets/directors/26-air-cdre-no-oyibo.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'FM Makinde', post: 'DSS psc(+) ndc MSc ACA', era: 'warfare', from: '2015-02-09', to: '2016-02-16', photo: 'assets/directors/27-air-cdre-fm-makinde.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AS Liman', post: 'FSS MSS DSS psc(++) BSc PGD FCAI mni', era: 'warfare', from: '2016-02-22', to: '2017-05-30', photo: 'assets/directors/28-air-cdre-as-liman.jpg', commandant: 'as-liman' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'NK Kumzhi', post: 'DSS psc(++) fdc MSc', era: 'warfare', from: '2017-05-30', to: '2018-08-27', photo: 'assets/directors/29-air-cdre-nk-kumzhi.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'HI Alhaji', post: 'DSS psc(+) fndu nswc BEng MTech MSc', era: 'warfare', from: '2018-08-28', to: '2020-01-05', photo: 'assets/directors/30-air-cdre-hi-alhaji.jpg', commandant: 'hi-alhaji' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AY Dari', post: 'DSS psc(+) ndc BSc MDS MSDS AMNIM', era: 'warfare', from: '2020-01-06', to: '2021-03-31', photo: 'assets/directors/31-air-cdre-ay-dari.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'CO Obiabaka', post: 'DSS psc(+) fdc DPA MIASS MBA Law MNIM MSPSP MCIPM', era: 'warfare', from: '2021-03-31', to: '2023-01-06', photo: 'assets/directors/32-air-cdre-co-obiabaka.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'EA Ola', post: 'MSS psc(+) fawc(+) fdc ATO BEng MIADS COREN MNIM', era: 'warfare', from: '2023-01-06', to: '2023-07-10', photo: 'assets/directors/33-air-cdre-ea-ola.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'A Audu', post: 'DSS psc(+) fawc(+) nswc MSc MIADS AMNIM', era: 'warfare', from: '2023-07-10', to: '2025-08-14', photo: 'assets/directors/34-air-cdre-a-audu.jpg' },
-    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SM Chindo', post: 'DSS psc(+) ndc(TZ) COREN MMDAS MSS MTech', era: 'warfare', from: '2025-08-15', to: '2026-01-12', photo: 'assets/directors/35-air-cdre-sm-chindo.jpg' }
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'S Magaji', post: 'FSS psc', era: 'faculty', from: '1982-02-08', to: '1982-12-01', photo: 'assets/directors/04-gp-capt-s-magaji.jpg',
+      fullName: "Air Vice Marshal S Magaji",
+      bio: [
+        "Air Vice Marshal S Magaji was among the early generation of officers integrated into the Nigerian Air Force structure during its foundational post-independence decade, establishing a long-standing military career. He served as the Director, Department of Air Warfare at the Armed Forces Command and Staff College, Jaji."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AH Lawal', post: 'FSS psc mni', era: 'faculty', from: '1982-12-01', to: '1984-01-20', photo: 'assets/directors/05-air-cdre-ah-lawal.jpg',
+      fullName: "Air Vice Marshal Adebayo Hamed Lawal",
+      bio: [
+        "Air Vice Marshal Adebayo Hamed Lawal was born in Offa, Kwara State on 14 September 1941 and educated at Government College, Ibadan. He joined the Nigerian Air Force in 1963 as a pioneer intake, completing military pilot training in West Germany in 1964.",
+        "The very senior officer played an instrumental tactical role during the Nigerian Civil War by maintaining the operational readiness of NAF's MiG-17 fighter jets against adversary air strikes.",
+        "He served as Base Commander in Port Harcourt, Enugu, and Kano before becoming the Air Officer Commanding, Tactical Air Command, Makurdi (1977–1978). He also enhanced advanced airpower training as the Director of the Air Faculty at AFCSC, Jaji.",
+        "Air Vice Marshal AH Lawal served as the Military Governor of Benue State (July 1978–October 1979), overseeing a peaceful transition to civilian rule under Aper Aku. He later served as the Federal Minister of Youth and Sports and sat on the Armed Forces Ruling Council under General Ibrahim Babangida."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AE Okpere', post: 'FSS psc mni', era: 'faculty', from: '1984-01-20', to: '1986-03-01', photo: 'assets/directors/06-air-cdre-ae-okpere.jpg',
+      fullName: "Air Vice Marshal Anthony Ebehijele Okpere",
+      bio: [
+        "Air Vice Marshal Anthony Ebehijele Okpere was born in Uromi, Edo State on 28 September 1943 and educated at Ishan Grammar School. He enlisted as a cadet officer in the pioneer intake of the Nigerian Air Force in 1963.",
+        "The senior officer served as a combat helicopter pilot during the Nigerian Civil War, flying hazardous operational missions from 1968 to 1970 and surviving 2 near-death combat incidents.",
+        "Air Vice Marshal AE Okpere was the Director of the Air Faculty at AFCSC, Jaji (1979–1982), where he shaped advanced airpower curriculum. He later served as the Air Officer Commanding of both Training Command in Kaduna (1987–1989) and Tactical Air Command in Makurdi (1989–1990).",
+        "The distinguished senior officer served under General Ibrahim Babangida’s military administration as the Managing Director of Nigeria Airways (1984–1986) and subsequently as the Federal Minister of Aviation (1986–1987). He was also an active member of the elite Armed Forces Ruling Council."
+      ]
+    },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'A Okpanachi', post: 'FSS psc mni', era: 'faculty', from: '1986-03-01', to: '1988-01-30', photo: 'assets/directors/07-gp-capt-a-okpanachi.jpg',
+      fullName: "Air Commodore Achem Okpanachi",
+      bio: [
+        "Air Commodore Achem Okpanachi hailed from Kogi State and was a pioneering senior officer of the Nigerian Air Force who passed away on September 14, 2016, at the age of 74. He served as the Director of the Department of Air Warfare at AFCSC, Jaji, contributing to the development of strategic airpower and joint-service training for senior officers.",
+        "The very senior officer served as the Commander of the Nigerian Air Force Logistics Group in Ikeja, Lagos, playing a central role in managing the serviceability and deployment of strategic air force assets. He was also Director of Inspections at Nigerian Air Force Headquarters in Abuja and represented Nigeria internationally as the Defence Attaché at the Nigerian Embassy in Moscow, Russia."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'MM Aliyu', post: 'FSS psc mni', era: 'faculty', from: '1988-07-10', to: '1989-02-21', photo: 'assets/directors/08-air-cdre-mm-aliyu.jpg',
+      fullName: "Air Vice Marshal MM Aliyu",
+      bio: [
+        "Air Vice Marshal MM Aliyu served as the Director of the Department of Air Warfare at AFCSC, Jaji, and held foundational roles as Chief Instructor of the Air Warfare Department at Jaji and Chief Instructor of the Air Force Wing at the Nigerian Defence Academy, Kaduna.",
+        "Air Vice Marshal MM Aliyu was also the Commander of the 551 NAF Station Jos and the Chief of Staff, Headquarters Ground Training Command, Enugu.",
+        "The very senior officer served at the highest tri-service level as the Director of Sports at Defence Headquarters in Abuja."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Mbaka', post: 'FSS psc mni', era: 'faculty', from: '1989-02-23', to: '1990-09-10', photo: 'assets/directors/09-air-cdre-ja-mbaka.jpg',
+      fullName: "Air Vice Marshal JA Mbaka",
+      bio: [
+        "Air Vice Marshal JA Mbaka is celebrated as a legendary foundational pilot who trained a generation of future NAF aviators and famously averted 2 catastrophic crashes by safely landing aircraft following mid-air engine failures over Ilorin and Kaduna states.",
+        "He served as the Director of the Department of Air Warfare at AFCSC, Jaji, directing joint-service operations training and strategic airpower curriculum for senior officers.",
+        "He also held the strategic role of Air Officer Commanding NAF Logistics Command Ikeja, Lagos, from September 1990 to January 1992, managing service-wide logistical infrastructure and technical maintenance."
+      ]
+    },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'MA Johnson', post: 'FSS psc mni', era: 'faculty', from: '1990-09-10', to: '1991-03-10', photo: 'assets/directors/10-gp-capt-ma-johnson.jpg',
+      fullName: "Air Commodore MA Johnson",
+      bio: [
+        "Air Commodore MA Johnson served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College (AFCSC), Jaji, shaping joint-service airpower training for senior officers.",
+        "He is remembered in Nigerian history as a member of the influential \"Lagos Caucus\" in 1993. Alongside other top officers, he helped craft the strategic security blueprint, “The Report: The Way Forward”, to navigate the national political crisis following the June 12 election annulment."
+      ]
+    },
+    { rank: 'Group Captain', rankShort: 'Gp Capt', name: 'VO Omozokpia', post: 'FSS psc mni', era: 'faculty', from: '1991-03-11', to: '1991-12-03', photo: 'assets/directors/11-gp-capt-vo-omozokpia.jpg',
+      fullName: "Air Commodore VO Omozokpia",
+      bio: [
+        "Air Commodore VO Omozokpia served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed advanced airpower doctrine and joint-service operational coursework for senior military officers.",
+        "He was appointed to the elite role of Air Officer Commanding, NAF Logistics Command in Ikeja, Lagos, serving as the head of service-wide supply, asset maintenance, and deployment infrastructure from May 1994 to September 1994."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JO Sunmonu', post: 'FSS DSO psc mni', era: 'faculty', from: '1991-12-04', to: '1993-10-07', photo: 'assets/directors/12-air-cdre-jo-sunmonu.jpg',
+      fullName: "Air Commodore JO Sunmonu",
+      bio: [
+        "Air Commodore JO Sunmonu served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed tactical curricula and advanced airpower training for senior military officers.",
+        "He also served as a top-tier aircraft engineering specialist and held the major operational command of Commander of the 401 Aircraft Maintenance Depot in Ikeja, Lagos, overseeing fleet overhauls and structural repairs."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'VC Akiti', post: 'FSS DSO psc(+)', era: 'faculty', from: '1993-10-08', to: '1994-09-26', photo: 'assets/directors/13-air-cdre-vc-akiti.jpg',
+      fullName: "Air Vice Marshal Victor C Akiti",
+      bio: [
+        "Air Vice Marshal Victor C Akiti was decorated with the prestigious national honor of Commander of the Order of the Niger (CON) for his exceptional service. He served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, shaping the advanced airpower paradigms and joint-operations curricula for senior military officers.",
+        "He held the highly influential appointment of Air Officer Personnel at Defence Headquarters, making him centrally responsible for career deployment, human resource management, and administrative welfare across the service branch."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Akawo', post: 'FSS psc(+) fwc', era: 'faculty', from: '1994-09-26', to: '1997-08-18', photo: 'assets/directors/14-air-cdre-ja-akawo.jpg',
+      fullName: "Air Commodore JA Akawu",
+      bio: [
+        "Air Commodore JA Akawu served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he steered advanced joint-service tactical frameworks and airpower operational curricula for senior officers.",
+        "He contributed extensively to high-level strategic planning and joint operational staff development across the tri-service arms of the Nigerian Armed Forces."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'I Abdulrahman', post: 'FSS MSS DSS psc(+)', era: 'faculty', from: '1997-08-18', to: '1998-12-18', photo: 'assets/directors/15-air-cdre-i-abdulrahman.jpg',
+      fullName: "Air Vice Marshal Ibrahim Abdulrahman",
+      bio: [
+        "Air Vice Marshal Ibrahim Abdulrahman served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji. In this role, he was responsible for auditing tactical manuals, leading regional operational exercises, and supervising advanced airpower academic curriculum for senior officers across the tri-services.",
+        "Beyond his instructional tenure at Jaji, he was appointed to lead the NAF's primary aviation instructional wing as the Air Officer Commanding, Training Command Kaduna. In this capacity, he directed the foundational flying schools, technical institutes, and combat readiness training programmes for the next generation of Nigerian military pilots.",
+        "He also served as the Director of Operations, HQ NAF, which made him central to national air defense deployment frameworks during his active service years."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'EU Okundaye', post: 'DSS psc(+) ndc', era: 'faculty', from: '1999-02-18', to: '1999-07-28', photo: 'assets/directors/16-air-cdre-eu-okundaye.jpg',
+      fullName: "Air Commodore EU Okundayo",
+      bio: [
+        "Air Commodore EU Okundayo served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed advanced airpower tactics, joint operations curriculum, and institutional planning for senior military officers.",
+        "He also served at the cutting edge of modern military intelligence as the Director of National Grid and Space Systems at the Defence Space Administration Abuja, managing satellite-driven defense technologies."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Kolawole', post: 'FSS MSS DSS psc fwc (MSc)', era: 'faculty', from: '1999-07-28', to: '2001-05-15', photo: 'assets/directors/17-air-cdre-ja-kolawole.jpg',
+      fullName: "Air Commodore JA Kolawole",
+      bio: [
+        "Air Commodore JA Kolawole served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College (AFCSC), Jaji, where he steered advanced joint-service tactical frameworks and airpower operational curricula for senior officers.",
+        "He was known within defense structures for his administrative acumen, leading specialized staff deployments and high-level training coordination across the armed forces."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'KR Ekezie', post: 'DSS psc(+) ndc', era: 'faculty', from: '2001-07-26', to: '2003-01-10', photo: 'assets/directors/18-air-cdre-kr-ekezie.jpg',
+      fullName: "Air Vice Marshal KR Ezekie",
+      bio: [
+        "Air Vice Marshal KR Ezekie served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed advanced air warfare curricula, spearheaded joint-service tactical simulation exercises, and mentored senior military officers.",
+        "He held senior administrative and command appointments at HQ NAF and within tri-service formations, specializing in defense policy and strategic force deployment."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'TM Ato', post: 'DSS psc(+) MSc', era: 'faculty', from: '2003-01-10', to: '2004-02-17', photo: 'assets/directors/19-air-cdre-tm-ato.jpg',
+      fullName: "Air Commodore TM Ato",
+      bio: [
+        "Air Commodore TM Ato served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he steered advanced tactical airpower curricula and joint-service operational coursework for senior military officers.",
+        "He also contributed significantly to regional stability and international operations, deploying on vital West African and continental peacekeeping missions in Sierra Leone, Liberia, and Darfur."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'I Danbauchi', post: 'DSS psc(+) fwc LLB MSc', era: 'warfare', from: '2004-02-17', to: '2006-09-08', photo: 'assets/directors/20-air-cdre-i-danbauchi.jpg',
+      fullName: "Air Commodore I Danbauchi",
+      bio: [
+        "Air Commodore I Danbauchi served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed advanced airpower tactics, joint operations curriculum, and institutional planning for senior military officers.",
+        "Outside his instructional roles, he served as the Commander of the 403 NAF Logistics Group in Kano, steering vital maintenance and equipment supply lines to sustain operations across the northern aviation sectors."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'JA Udo', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2006-09-08', to: '2007-01-09', photo: 'assets/directors/21-air-cdre-ja-udo.jpg',
+      fullName: "Air Commodore JA Udo",
+      bio: [
+        "Air Commodore JA Udo served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he steered advanced joint-service tactical frameworks and airpower operational curricula for senior officers."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SA Leks', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2007-01-08', to: '2007-08-08', photo: 'assets/directors/22-air-cdre-sa-leks.jpg', commandant: 'sa-leks',
+      fullName: "Air Vice Marshal SA Leks",
+      bio: [
+        "Air Vice Marshal SA Leks served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji in 2007, directing advanced airpower training for senior military officers.",
+        "He also served as the Deputy Commandant of the Nigerian Defence Academy, before being appointed to head the entire Armed Forces Command and Staff College Jaji as the Commandant."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'MY Oladunni', post: 'DSS psc(+) fwc MSc', era: 'warfare', from: '2007-08-08', to: '2010-01-29', photo: 'assets/directors/23-air-cdre-my-oladunni.jpg',
+      fullName: "Air Commodore MY Oladunni",
+      bio: [
+        "Air Commodore MY Oladunni served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, where he directed advanced airpower tactics, joint operations curriculum, and institutional planning for senior military officers.",
+        "He was also a top-tier technical specialist and held the major staff appointment of Director of Engineering at HQ NAF, overseeing fleet lifecycle frameworks and maintenance protocols."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'GO Ekagbo', post: 'DSS psc(+) fndu (PRC)', era: 'warfare', from: '2010-01-30', to: '2012-12-06', photo: 'assets/directors/24-air-cdre-go-ekagbo.jpg',
+      fullName: "Air Commodore GO Ekagbo",
+      bio: [
+        "Air Commodore GO Ekagbo served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, championing modern military professionalism, airpower tactics, and democratic civil-military relation paradigms.",
+        "Air Commodore GO Ekagbo sustained fatal injuries during the Jaji military cantonment twin church bombings on 25 November 2012, passing away in December 2012.",
+        "The Ekagbo Quarters at NAF Base Kaduna was named after him to preserve his legacy within the service"
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SG Jeff-Zanni', post: 'DSS psc(+) ndc MSc', era: 'warfare', from: '2012-12-17', to: '2014-10-12', photo: 'assets/directors/25-air-cdre-sg-jeff-zanni.jpg',
+      fullName: "Air Commodore Stephen Gbeje Jeff-Zanni",
+      bio: [
+        "Air Commodore Stephen Gbeje Jeff-Zanni was born in July 1962. He rose to become an accomplished NAF fighter pilot and flying instructor.",
+        "He served as a Director, Department of Air Warfare, Armed Forces Command and Staff College, Jaji, and held key defense policy postings, including Deputy Director of Plans and Director of Safety at HQ NAF.",
+        "Post-military, he transitioned to global academia, earning an MSc from Pakistan, an MBA from Bangor University, and a PhD in Insurance Law."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'NO Oyibo', post: 'DSS psc(+) fdc(+) MSc', era: 'warfare', from: '2014-10-13', to: '2015-02-08', photo: 'assets/directors/26-air-cdre-no-oyibo.jpg',
+      fullName: "Air Commodore Noah O Oyibo",
+      bio: [
+        "Air Commodore Noah O Oyibo served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, directing advanced joint-service tactical airpower curricula.",
+        "He also served extensively as the Senior Air Staff Officer at Headquarters Ground Training Command in Enugu, steering regional ground operations and training infrastructure."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'FM Makinde', post: 'DSS psc(+) ndc MSc ACA', era: 'warfare', from: '2015-02-09', to: '2016-02-16', photo: 'assets/directors/27-air-cdre-fm-makinde.jpg',
+      fullName: "Air Commodore FM Makinde",
+      bio: [
+        "Air Commodore FM Makinde served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, coordinating advanced joint-service tactical airpower training.",
+        "He was also appointed to the prominent roles of Director of Air Engineering at HQ NAF and Commander of the 333 Logistics Group in Kaduna.",
+        "He continues to advance national security as a key research panelist and discussant for the Defence Research and Development Bureau"
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AS Liman', post: 'FSS MSS DSS psc(++) BSc PGD FCAI mni', era: 'warfare', from: '2016-02-22', to: '2017-05-30', photo: 'assets/directors/28-air-cdre-as-liman.jpg', commandant: 'as-liman',
+      fullName: "Air Vice Marshal Abubakar Sadiq Liman",
+      bio: [
+        "Air Vice Marshal Abubakar Sadiq Liman was born on 1 January 1964 in Lapai, Niger State. He is a highly qualified helicopter engineer trained locally and internationally in Russia on specialized military airframes (Mil Mi-34C and Hughes 300C platforms).",
+        "He served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji (2016–2017), and later as the Commandant Armed Forces Command and Staff College, Jaji.",
+        "He also served as the Commandant of the Armed Forces Resettlement Centre, Lagos (2018), and as the Director of Space Utilization at Defence Headquarters, Abuja."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'NK Kumzhi', post: 'DSS psc(++) fdc MSc', era: 'warfare', from: '2017-05-30', to: '2018-08-27', photo: 'assets/directors/29-air-cdre-nk-kumzhi.jpg',
+      fullName: "Air Vice Marshal Nanjul Kenneth Kumzhi",
+      bio: [
+        "Air Vice Marshal Nanjul Kenneth Kumzhi served as the Director, Department of Air Warfare, Armed Forces Command and Staff College, Jaji, coordinating advanced joint-service tactical airpower training.",
+        "He was also the Air Officer Commanding, Air Training Command in Kaduna and previously as the Chief of Staff at Headquarters Tactical Air Command in Makurdi.",
+        "He commanded international military diplomacy as the Director of Sports at Defence Headquarters and Chief of the Nigerian Delegation to CISM."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'HI Alhaji', post: 'DSS psc(+) fndu nswc BEng MTech MSc', era: 'warfare', from: '2018-08-28', to: '2020-01-05', photo: 'assets/directors/30-air-cdre-hi-alhaji.jpg', commandant: 'hi-alhaji',
+      fullName: "Air Vice Marshal Hassan Ibrahim Alhaji",
+      bio: [
+        "Air Vice Marshal Hassan Ibrahim Alhaji served as the Director of the Department of Air Warfare, Armed Forces Command and Staff College, Jaji, coordinating advanced joint-service tactical airpower training.",
+        "The distinguished senior officer later became the Commandant of the Armed Forces Command and Staff College, Jaji, supervising advanced combat and staff development for the entire tri-service officer corps of the federation."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'AY Dari', post: 'DSS psc(+) ndc BSc MDS MSDS AMNIM', era: 'warfare', from: '2020-01-06', to: '2021-03-31', photo: 'assets/directors/31-air-cdre-ay-dari.jpg',
+      fullName: "Air Vice Marshal Ahmed Yusuf Dari",
+      bio: [
+        "Air Vice Marshal Ahmed Yusuf Dari was born on 10 March 1970 in Zaria, Kaduna State. He entered the Nigerian Defence Academy as part of the 41 Regular Course in 1989 and was commissioned into the NAF on 17 September 1994. He holds a BSc in Chemistry and 2 Master's degrees in Defence and Strategic Studies.",
+        "He is a seasoned pilot instructor who has flown 8 different aircraft types, logging an impressive total of over 2,500 command flying hours.",
+        "He served as the Director of the Department of Air Warfare, Armed Forces Command and Staff College, Jaji, where he successfully modernized the faculty's joint-services tactical simulation matrices.",
+        "He was the Air Officer Commanding, Air Training Command, Kaduna and later the Chief of Training HQ NAF. He currently serves as the General Manager of the Nigerian Air Force Investment Limited Group of Companies."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'CO Obiabaka', post: 'DSS psc(+) fdc DPA MIASS MBA Law MNIM MSPSP MCIPM', era: 'warfare', from: '2021-03-31', to: '2023-01-06', photo: 'assets/directors/32-air-cdre-co-obiabaka.jpg',
+      fullName: "Air Vice Marshal Chidiebere Obinna Obiabaka",
+      bio: [
+        "Air Vice Marshal Chidiebere Obinna Obiabaka is member of the 42 Regular Course at the Nigerian Defence Academy. He holds a BSc in Chemistry and multiple master's degrees spanning strategic studies, international affairs, and business administration law.",
+        "He served as Director, Department of Air Warfare, Armed Forces Command and Staff College, Jaji. He also commanded the 121 Forward Operations Base and the 553 Base Services Group Enugu.",
+        "His appointments at HQ NAF include Director, Museum and Archives and Director, Veteran Affairs. He is currently the Air Secretary."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'EA Ola', post: 'MSS psc(+) fawc(+) fdc ATO BEng MIADS COREN MNIM', era: 'warfare', from: '2023-01-06', to: '2023-07-10', photo: 'assets/directors/33-air-cdre-ea-ola.jpg',
+      fullName: "Air Commodore Emmanuel Akinbo Ola",
+      bio: [
+        "Air Commodore Emmanuel Akinbo Ola hails from Osun State. He is of the Armament speciality. He holds a B Engr in Elect/Elect Engineering, an MPhil in Security and Strategic Studies, and a Master's in International Affairs and Defence Studies.",
+        "Air Commodore EA Ola has held prominent leadership appointments including Commander 151 Base Services Group Makurdi, Director of Production, DICON, and Deputy Director Plans HQ NAF. He was also Commander 633 Central Armament Depot.",
+        "The distinguished senior officer was a Directing Staff at both the Army War College and Air Force War College Nigeria. He later served as Director Department of Air Warfare, Armed Forces Command and Staff College, Jaji."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'A Audu', post: 'DSS psc(+) fawc(+) nswc MSc MIADS AMNIM', era: 'warfare', from: '2023-07-10', to: '2025-08-14', photo: 'assets/directors/34-air-cdre-a-audu.jpg',
+      fullName: "Air Commodore A Audu",
+      bio: [
+        "Air Commodore A Audu was commissioned on 18 September 1999 as a member the 46 Regular Course of the Nigerian Defence Academy, into the Air Traffic Services Specialty of the NAF. He holds a BSc in Chemistry and Master of International Affairs and Defence Studies, both from the Nigerian Defence Academy. He also holds a Master of National Security and War Studies from the National Defence University, Islamabad Pakistan.",
+        "The erudite senior officer has an extensive educational pedigree, including serving as Chief Instructor at the Armed Forces Command and Staff College, Jaji and Director of Studies at the Air Force War College, Makurdi. He also served as the Director of the Department of Air Warfare at the Armed Forces Command and Staff College, Jaji, directing advanced joint-service tactical airpower training.",
+        "Air Commodore A Audu’s command & operational footprint includes, amongst others, his service as the Military Airport Commandant for Abuja Airport, Commander 151 Base Services Group in Makurdi, and a UN Military Observer in the DRC (MONUC). Additionally, he was Director, Directorate of Airspace Management and Services at HQ NAF."
+      ]
+    },
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'SM Chindo', post: 'DSS psc(+) ndc(TZ) COREN MMDAS MSS MTech', era: 'warfare', from: '2025-08-15', to: '2026-01-12', photo: 'assets/directors/35-air-cdre-sm-chindo.jpg',
+      fullName: "Air Commodore Shehu Muhammad Chindo",
+      bio: [
+        "Air Commodore Shehu Muhammad Chindo hails from Argungu LGA, Kebbi State. He was commissioned into the NAF as a member of the 47th Regular Course of the Nigerian Defence Academy in September 2000, graduating with a BEng in Electrical/ Electronics Engineering.",
+        "The erudite senior officer holds 3 postgraduate degrees, including an MTech from Obafemi Awolowo University, a Master’s in Military Operational Arts & Science from Maxwell AFB, USA, and a Master’s in Security and Strategic Studies from the National Defence College, Tanzania. He also completed specialised Electronic Warfare training in Pakistan.",
+        "Air Commodore SM Chindo served as the Director of the Department of Air Warfare, Armed Forces Command and Staff College, Jaji from August 2025 to January 2026. His next appointment was as the Deputy Commandant and Director of Studies at the Air Force War College Nigeria in Makurdi, capping an instructional career that includes roles as Directing Staff at Jaji and Air Force War College, Chief Instructor at the Nigerian Defence Academy Air Force Wing, and HOD at AFIT.",
+        "The distinguished senior officer’s key commands and staff postings include Commander 041 Communication and Information Systems Depot,Lagos and Commander 553 Base Services Group Enugu. His high-level staff roles include serving as Principal Staff Officer (Coordination) to the Chief of the Air Staff (2019–2021) and Deputy Director of Systems Management at HQ NAF."
+      ]
+    },
+    /* Not in the portraits PDF: from the biographies deck (slide 36), whose
+       portrait caption calls him the Director. Start date to be confirmed. */
+    { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'OO Obasa', post: 'DSS psc(++) fawc(+) fdc BEng MPhil MNIM PhD', era: 'warfare', from: null, to: null, current: true, photo: 'assets/directors/36-air-cdre-oo-obasa.jpg',
+      fullName: "Air Commodore Olamiju Olusegun Obasa",
+      bio: [
+        "Air Commodore Olamiju Olusegun Obasa holds a BEng in Mechanical Engineering from the Nigerian Defence Academy and aeronautical training from Bangalore, India. He also holds a PhD in Defence and Strategic Studies from the Nigerian Defence Academy, an MPhil, and a Master's in Conflict, Peace and Security from Ghana (KAIPTC).",
+        "The erudite senior officer has built an elite educational profile, serving as a Directing Staff at both the Nigerian and Ghanaian Staff Colleges, Chief Instructor at the Armed Forces Command and Staff College, Jaji, and Director of Coordination at the Air Force War College Nigeria. He also served as Director, Department of Air Warfare, Armed Forces Command and Staff College, Jaji.",
+        "Air Commodore OO Obasa was also Commander, 131 Engineering Group and the NAF Component Commander for Operation MESA in Lagos, as well as a UN Air Operations Staff Officer in Darfur, Sudan (UNAMID)."
+      ]
+    }
   ],
 
   /* ----------------------------------------------------------
@@ -506,12 +748,16 @@ var HOF_CONTENT = {
       facts: [], bio: []
     },
     {
-      /* From the portrait on the Hall of Fame wall; no biography supplied yet.
+      /* From the portrait on the Hall of Fame wall. Biography from the
+         directors' deck (slide 30), which covers both his appointments.
          Also Director Air Warfare 2018–2020 (as Air Cdre HI Alhaji). */
       id: 'hi-alhaji', no: 27, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'HI Alhaji', serviceNo: '',
-      post: 'GSS DTM CMH psc(+) fndu nswc BEng MTech MSc', fullName: '',
+      post: 'GSS DTM CMH psc(+) fndu nswc BEng MTech MSc', fullName: 'Hassan Ibrahim Alhaji',
       from: '2023-07-03', to: '2026-01-07', photo: 'assets/commandants/27-hi-alhaji.jpg', director: 'HI Alhaji',
-      facts: [], bio: []
+      facts: [], bio: [
+        "Air Vice Marshal Hassan Ibrahim Alhaji served as the Director of the Department of Air Warfare, Armed Forces Command and Staff College, Jaji, coordinating advanced joint-service tactical airpower training.",
+        "The distinguished senior officer later became the Commandant of the Armed Forces Command and Staff College, Jaji, supervising advanced combat and staff development for the entire tri-service officer corps of the federation."
+      ]
     }
   ],
 
