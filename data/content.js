@@ -757,6 +757,31 @@ var HOF_CONTENT = {
         "Air Vice Marshal Hassan Ibrahim Alhaji served as the Director of the Department of Air Warfare, Armed Forces Command and Staff College, Jaji, coordinating advanced joint-service tactical airpower training.",
         "The distinguished senior officer later became the Commandant of the Armed Forces Command and Staff College, Jaji, supervising advanced combat and staff development for the entire tri-service officer corps of the federation."
       ]
+    },
+    {
+      id: 'ao-shogbanmu', no: 28, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'AO Shogbanmu', serviceNo: '',
+      post: '', fullName: 'Alfred Olugbenga Shogbanmu',
+      from: '2026-01-07', to: '2026-11-13', photo: 'assets/commandants/28-ao-shogbanmu.jpg',
+      facts: [], bio: []
+    },
+    {
+      id: 'pb-phillips', no: 29, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'PB Phillips', serviceNo: '',
+      post: 'BSc MIASS MPhil MSS PhD', fullName: 'Patrick Babatunde Phillips',
+      from: '2026-11-13', to: null, current: true, photo: 'assets/commandants/29-pb-phillips.jpg',
+      facts: [
+        { label: 'Born', value: '18 March 1972' },
+        { label: 'Hometown', value: 'Abeokuta South LGA, Ogun State' },
+        { label: 'Cadet course', value: '41 Regular Course, NDA' },
+        { label: 'Commissioned', value: '1994 · Pilot Officer' }
+      ],
+      bio: [
+        'Air Vice Marshal Patrick Babatunde Phillips was born into the family of Pst Oluyemisi and late Mrs Kosiwa Phillips on 18 March 1972. He hails from Abeokuta South Local Government Area of Ogun State and began his early education at Air Force Primary School Ikeja and Command Children School, Mokola Ibadan from 1975 to 1983. He thereafter attended the Nigerian Military School, Zaria from 1983 to 1988 and was admitted into the Nigerian Defence Academy, Kaduna in 1989 as a member of 41 Regular Course.',
+        'Babatunde was commissioned into the Nigerian Air Force in 1994 as a Pilot Officer and was promoted Air Vice Marshal in December 2022. He has attended several military courses, including the Basic Regiment Officers Course, Junior and Senior Staff Courses at the Armed Forces and Command Staff College, Jaji, the International Subway Anti-Hijack Seminar in China, the Regimental Commanders Course at NASA Kachia, and the Programme on Terrorism and Security Studies 12-16 in Germany.',
+        'He holds a BSc in Mathematics and Masters in International Affairs and Strategic Studies from the Nigerian Defence Academy, a Master of Philosophy and Masters in Strategic Studies, and is a Fellow of the National Defence College. He also holds a PhD in Leadership and Public Administration, with a PhD in Leadership and Strategic Studies in view.',
+        'Phillips has held several appointments since his commission, including Senior Instructor at the Air Force Military School, Jos, Sector Commander covering four local governments in Benue State during the 2003 election internal security operations, Directing Staff and Chief Instructor at AFCSC Jaji, Deputy Director of Regiment at Nigerian Air Force Headquarters, NAF Base Defence Evaluator, the first Deputy Commandant of the Regiment Training Centre, Kaduna, and Director of Regiment at NAF Headquarters.',
+        'His later appointments include Chief of Staff, Special Operations Command, Commander 121 Forward Operations Base, Commandant of the Military Training and Regiment Training Centres, Coordinator of the Project Implementation Monitoring Team, Chief of Logistics at NAF Headquarters, Commandant of the Air Force War College Nigeria from February to October 2025, and Director of Sports at Defence Headquarters from October 2025.',
+        'Air Vice Marshal PB Phillips is married and blessed with two children. His hobbies include walking, jogging, reading and writing. He has co-authored 12 books with his wife, and three books published at Xlibris USA in July 2015: Out of the Pit, Staying Out of Pits and Heaven on Earth.'
+      ]
     }
   ],
 
@@ -765,7 +790,7 @@ var HOF_CONTENT = {
   homeCommandantPhotos: [
     'assets/commandants/02-jo-bajowa.jpg',
     'assets/commandants/16-sa-leks.jpg',
-    'assets/commandants/27-hi-alhaji.jpg',
+    'assets/commandants/29-pb-phillips.jpg',
     'assets/commandants/23-as-liman.jpg',
     'assets/commandants/09-jn-dogonyaro.jpg'
   ],
