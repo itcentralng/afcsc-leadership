@@ -1,5 +1,5 @@
 /* ============================================================
-   DEPARTMENT OF AIR WARFARE HALL OF FAME — kiosk content
+   SK ANEKE HALL OF FAME — kiosk content
    Armed Forces Command and Staff College, Nigeria.
    Every name, date and biography the kiosk shows lives here, so the
    rolls can be corrected or extended without touching the app code.
@@ -12,11 +12,11 @@ var HOF_CONTENT = {
 
   ui: {
     appTitle: 'Past Leaders',
-    appKicker: 'Department of Air Warfare · AFCSC, Nigeria',
+    appKicker: 'SK Aneke Hall of Fame · Department of Air Warfare',
     college: 'Armed Forces Command and Staff College',
     collegeShort: 'AFCSC, Nigeria',
     department: 'Department of Air Warfare',
-    hallOfFame: 'Hall of Fame',
+    hallOfFame: 'SK Aneke Hall of Fame',
     tagline: 'Honouring those who led the College and the Department',
     touchToBegin: 'Touch to begin',
 

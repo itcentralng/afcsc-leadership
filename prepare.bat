@@ -12,7 +12,7 @@ rem ============================================================
 
 set "SCRIPT_DIR=%~dp0"
 set "TARGET_BAT=%SCRIPT_DIR%run.bat"
-set "SHORTCUT_NAME=Past Leaders.lnk"
+set "SHORTCUT_NAME=Past Leaders - SK Aneke Hall of Fame.lnk"
 set "SHORTCUT_PATH=%USERPROFILE%\Desktop\%SHORTCUT_NAME%"
 set "VBS_PATH=%TEMP%\daw_make_shortcut.vbs"
 
@@ -27,7 +27,11 @@ if not exist "%TARGET_BAT%" (
   exit /b 1
 )
 
-echo Creating a Desktop shortcut for Past Leaders...
+del "%USERPROFILE%\Desktop\Past Leaders.lnk" >nul 2>&1
+del "%USERPROFILE%\Desktop\Our Leaders.lnk" >nul 2>&1
+del "%USERPROFILE%\Desktop\SK Aneke Hall of Fame - Past Leaders.lnk" >nul 2>&1
+
+echo Creating a Desktop shortcut for Past Leaders - SK Aneke Hall of Fame...
 
 > "%VBS_PATH%" echo Set oWS = WScript.CreateObject("WScript.Shell")
 >> "%VBS_PATH%" echo Set oLink = oWS.CreateShortcut("%SHORTCUT_PATH%")
@@ -36,7 +40,7 @@ echo Creating a Desktop shortcut for Past Leaders...
 >> "%VBS_PATH%" echo oLink.WorkingDirectory = "%SCRIPT_DIR%"
 >> "%VBS_PATH%" echo oLink.WindowStyle = 7
 >> "%VBS_PATH%" echo oLink.IconLocation = "%APP_ICON%"
->> "%VBS_PATH%" echo oLink.Description = "Launch Past Leaders, the Department of Air Warfare Hall of Fame kiosk"
+>> "%VBS_PATH%" echo oLink.Description = "Launch Past Leaders, the SK Aneke Hall of Fame kiosk"
 >> "%VBS_PATH%" echo oLink.Save
 
 cscript //nologo "%VBS_PATH%"
