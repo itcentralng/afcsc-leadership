@@ -17,7 +17,7 @@ var HOF_CONTENT = {
     collegeShort: 'AFCSC, Nigeria',
     department: 'Department of Air Warfare',
     hallOfFame: 'SK Aneke Hall of Fame',
-    tagline: 'Honouring those who led the College and the Department',
+    tagline: 'Honouring those who led the College and the Department of Air Warfare',
     touchToBegin: 'Touch to begin',
 
     navCommandants: 'Commandants',
