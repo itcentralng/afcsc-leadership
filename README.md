@@ -1,9 +1,9 @@
 # Our Leaders
 
-**Department of Air Warfare Hall of Fame · Armed Forces Command and Staff College, Jaji**
+**Department of Air Warfare Hall of Fame · Armed Forces Command and Staff College, Nigeria**
 
 Touch-screen kiosk for the Department of Air Warfare Hall of Fame at the
-Armed Forces Command and Staff College, Jaji. It honours the Commandants of
+Armed Forces Command and Staff College, Nigeria. It honours the Commandants of
 the College and the Directors of the Department (styled Director Air Faculty
 until 2004, Director Air Warfare since). It is a static, offline web app (no
 build step, no internet needed) designed for a 1920×1080 landscape display
