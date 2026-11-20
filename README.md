@@ -1,4 +1,4 @@
-# Our Leaders
+# Past Leaders
 
 **Department of Air Warfare Hall of Fame · Armed Forces Command and Staff College, Nigeria**
 
@@ -58,6 +58,8 @@ Everything lives in `data/content.js`:
   `army`, `airforce` or `navy`, `bio` is the biography's paragraphs and
   `facts` the short facts shown above it. Dates are `YYYY-MM-DD`; use `null`
   for a date not known yet, and it shows as "-".
+- The serving Commandant and Director records are retained as comments in
+  `data/content.js`; uncomment them to restore them to the app.
 - Commandants' tenure dates follow the captions on their portraits on the
   Hall of Fame wall. `photo: null` shows the officer's initials instead of a
   portrait, and `bio: []` shows "Biography to follow".

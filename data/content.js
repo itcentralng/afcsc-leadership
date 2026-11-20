@@ -5,13 +5,13 @@
    rolls can be corrected or extended without touching the app code.
 
    Dates are ISO (YYYY-MM-DD). Use null for a date not yet known.
-   "current: true" marks the serving office holder (none is set yet).
+   "current: true" marks the serving office holder.
    ============================================================ */
 
 var HOF_CONTENT = {
 
   ui: {
-    appTitle: 'Our Leaders',
+    appTitle: 'Past Leaders',
     appKicker: 'Department of Air Warfare · AFCSC, Nigeria',
     college: 'Armed Forces Command and Staff College',
     collegeShort: 'AFCSC, Nigeria',
@@ -342,6 +342,7 @@ var HOF_CONTENT = {
     },
     /* Not in the portraits PDF: from the biographies deck (slide 36), whose
        portrait caption calls him the Director. Start date to be confirmed. */
+    /*
     { rank: 'Air Commodore', rankShort: 'Air Cdre', name: 'OO Obasa', post: 'DSS psc(++) fawc(+) fdc BEng MPhil MNIM PhD', era: 'warfare', from: null, to: null, current: true, photo: 'assets/directors/36-air-cdre-oo-obasa.jpg',
       fullName: "Air Commodore Olamiju Olusegun Obasa",
       bio: [
@@ -350,6 +351,7 @@ var HOF_CONTENT = {
         "Air Commodore OO Obasa was also Commander, 131 Engineering Group and the NAF Component Commander for Operation MESA in Lagos, as well as a UN Air Operations Staff Officer in Darfur, Sudan (UNAMID)."
       ]
     }
+    */
   ],
 
   /* ----------------------------------------------------------
@@ -764,6 +766,7 @@ var HOF_CONTENT = {
       from: '2026-01-07', to: '2026-11-13', photo: 'assets/commandants/28-ao-shogbanmu.jpg',
       facts: [], bio: []
     },
+    /*
     {
       id: 'pb-phillips', no: 29, service: 'airforce', rank: 'Air Vice Marshal', rankShort: 'AVM', name: 'PB Phillips', serviceNo: '',
       post: 'BSc MIASS MPhil MSS PhD', fullName: 'Patrick Babatunde Phillips',
@@ -783,14 +786,15 @@ var HOF_CONTENT = {
         'Air Vice Marshal PB Phillips is married and blessed with two children. His hobbies include walking, jogging, reading and writing. He has co-authored 12 books with his wife, and three books published at Xlibris USA in July 2015: Out of the Pit, Staying Out of Pits and Heaven on Earth.'
       ]
     }
+    */
   ],
 
-  /* The five medallions on the home screen's Commandants panel
-     (the third sits in the middle, ringed in gold). */
+  /* The home screen's Commandants panel. The serving Commandant's portrait
+     is commented out with his record. */
   homeCommandantPhotos: [
     'assets/commandants/02-jo-bajowa.jpg',
     'assets/commandants/16-sa-leks.jpg',
-    'assets/commandants/29-pb-phillips.jpg',
+    // 'assets/commandants/29-pb-phillips.jpg',
     'assets/commandants/23-as-liman.jpg',
     'assets/commandants/09-jn-dogonyaro.jpg'
   ],

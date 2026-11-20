@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-rem Update Our Leaders from its configured GitHub branch.
+rem Update Past Leaders from its configured GitHub branch.
 cd /d "%~dp0"
 
 where git >nul 2>&1
@@ -17,7 +17,7 @@ if not exist ".git" (
 )
 
 echo Closing the kiosk if it is running...
-taskkill /fi "WINDOWTITLE eq Our Leaders*" /t /f >nul 2>&1
+taskkill /fi "WINDOWTITLE eq Past Leaders*" /t /f >nul 2>&1
 
 for /f %%i in ('git rev-parse HEAD') do set "OLD=%%i"
 
