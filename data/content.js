@@ -22,13 +22,13 @@ var HOF_CONTENT = {
 
     navCommandants: 'Commandants',
     navDirectors: 'Directors',
-    menuCommandants: 'Commandants of the College',
+    menuCommandants: 'Commandants Armed Forces Command and Staff College',
     menuCommandantsSub: 'The officers who have led the Armed Forces Command and Staff College',
-    menuDirectors: 'Directors of Air Warfare',
+    menuDirectors: 'Directors Department of Air Warfare',
     menuDirectorsSub: 'Every head of the Department, from the Air Faculty to Air Warfare',
 
-    commandantsTitle: 'Commandants of the College',
-    directorsTitle: 'Directors of Air Warfare',
+    commandantsTitle: 'Commandants Armed Forces Command and Staff College',
+    directorsTitle: 'Directors Department of Air Warfare',
     commandant: 'Commandant',
     director: 'Director',
     of: 'of',
