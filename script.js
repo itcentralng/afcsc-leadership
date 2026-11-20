@@ -446,8 +446,6 @@
 
     if (state.screen !== 'bio') showScreen('bio');
     else syncTopbar();
-    // two columns while the text fits; otherwise one column that scrolls
-    if (el.bioPanel.scrollWidth > el.bioPanel.clientWidth + 2) el.bioPanel.classList.add('is-long');
     restartAnimation(el.bioWrap, direction ? (direction < 0 ? 'enter-prev' : 'enter-next') : null);
     resetIdleTimer();
   }
